@@ -1,0 +1,40 @@
+{
+  "name": "api-module-users-model",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/module/users/model/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist\\{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/module/users/model",
+        "tsConfig": "libs/api/module/users/model/tsconfig.lib.json",
+        "packageJson": "libs/api/module/users/model/package.json",
+        "main": "libs/api/module/users/model/src/index.ts",
+        "assets": ["libs/api/module/users/model/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist\\{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/api/module/users/model/jest.config.ts"
+      }
+    }
+  }
+}
