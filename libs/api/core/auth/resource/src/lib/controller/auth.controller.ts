@@ -7,22 +7,22 @@ import {
   HttpStatus,
   Post,
   Request,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiProduces,
   ApiResponse,
-  ApiTags
+  ApiTags,
 } from '@nestjs/swagger';
 import {
   AbstractAppController,
-  ResponseDataWrapperDto
+  ResponseDataWrapperDto,
 } from '@project/api-core-api';
 import { SkipAccessTokenGuard } from '@project/api-core-auth-decorator';
 import {
   RefreshTokenGuard,
-  ResetPasswordGuard
+  ResetPasswordGuard,
 } from '@project/api-core-auth-guard';
 import {
   AuthTokensResultDto,
@@ -34,13 +34,13 @@ import {
   ResetPasswordConfirmResultDto,
   ResetPasswordRequestInDto,
   ResetPasswordRequestResultDto,
-  SignInDto
+  SignInDto,
 } from '@project/api-core-auth-model';
 import { AuthService } from '@project/api-core-auth-service';
 
 @ApiTags('auth')
 @Controller({
-  path: 'auth'
+  path: 'auth',
   /*version: '1'*/
 })
 export class AuthController extends AbstractAppController {
@@ -56,7 +56,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'User login',
-    type: AuthTokensResultDto
+    type: AuthTokensResultDto,
     // isArray: true,
   })
   @SkipAccessTokenGuard()
@@ -77,7 +77,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'User profile information',
-    type: ProfileResultDto
+    type: ProfileResultDto,
     // isArray: true,
   })
   @ApiBearerAuth()
@@ -91,7 +91,7 @@ export class AuthController extends AbstractAppController {
       id: req.user.sub,
       username: req.user.username,
       properties: req.user.properties,
-      permissions: req.user.permissions
+      permissions: req.user.permissions,
     });
   }
 
@@ -99,7 +99,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'User logout',
-    type: Boolean
+    type: Boolean,
     // isArray: true,
   })
   @ApiBearerAuth()
@@ -114,7 +114,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Change current user password',
-    type: ChangePasswordResultDto
+    type: ChangePasswordResultDto,
     // isArray: true,
   })
   @ApiBearerAuth()
@@ -138,7 +138,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Refresh user tokens',
-    type: AuthTokensResultDto
+    type: AuthTokensResultDto,
     // isArray: true,
   })
   @SkipAccessTokenGuard()
@@ -162,7 +162,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Request to reset password',
-    type: ResetPasswordRequestResultDto
+    type: ResetPasswordRequestResultDto,
     // isArray: true,
   })
   @SkipAccessTokenGuard()
@@ -184,7 +184,7 @@ export class AuthController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Reset password',
-    type: ResetPasswordRequestResultDto
+    type: ResetPasswordRequestResultDto,
     // isArray: true,
   })
   @SkipAccessTokenGuard()

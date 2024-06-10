@@ -6,6 +6,6 @@ import { AuthController } from './controller/auth.controller';
   imports: [ApiCoreAuthServiceModule],
   controllers: [AuthController],
   providers: [],
-  exports: []
+  exports: [],
 })
 export class ApiCoreAuthResourceModule {}

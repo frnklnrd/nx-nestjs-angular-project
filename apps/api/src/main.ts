@@ -92,6 +92,10 @@ async function bootstrap() {
   Logger.log(
     `🚀 Api Docs is accesible on: http://localhost:${port}${apiDocsSwaggerUiUrl}`
   );
+
+  Logger.log(
+    `🚀 Api Docs inJSON format is accesible on: http://localhost:${port}${apiDocsSwaggerJsonUrl}`
+  );
 }
 
 bootstrap();

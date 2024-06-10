@@ -5,7 +5,7 @@ import {
   CreateUserInDto,
   SearchUsersInDto,
   UpdateUserInDto,
-  User
+  User,
 } from '@project/api-module-users-model';
 
 import { plainToClass } from 'class-transformer';
@@ -34,7 +34,7 @@ export class UsersService {
       isAdmin: false,
       password: await this.cryptoUtilService.hashPassword(
         createUserDto.password as string
-      )
+      ),
     });
   }
 
@@ -60,7 +60,9 @@ export class UsersService {
   async updatePassword(userId: string, newPassword: string): Promise<User> {
     return this.usersRepository.save({
       id: userId,
-      password: await this.cryptoUtilService.hashPassword(newPassword as string)
+      password: await this.cryptoUtilService.hashPassword(
+        newPassword as string
+      ),
     });
   }
 
@@ -112,14 +114,14 @@ export class UsersService {
     const [items, total] = await this.usersRepository.findAndCount({
       // where: username ? { username: ILike(`%${username}%`) } : {},
       take: perPage,
-      skip: (page - 1) * perPage
+      skip: (page - 1) * perPage,
     });
 
     return {
       items,
       total,
       page,
-      limit: perPage
+      limit: perPage,
     };
   }
 
@@ -154,7 +156,7 @@ export class UsersService {
   async updateActive(userId: string, active: boolean): Promise<User> {
     return this.usersRepository.save({
       id: userId,
-      isActive: active
+      isActive: active,
     });
     // TODO add active at date
   }
@@ -162,7 +164,7 @@ export class UsersService {
   async updateBlocked(userId: string, blocked: boolean): Promise<User> {
     return this.usersRepository.save({
       id: userId,
-      isBlocked: blocked
+      isBlocked: blocked,
     });
     // TODO add blocked at date
   }

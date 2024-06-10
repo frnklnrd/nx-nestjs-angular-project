@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import {
   ACCESS_TOKEN_STRATEGY_KEY,
-  SKIP_ACCESS_TOKEN_GUARD_KEY
+  SKIP_ACCESS_TOKEN_GUARD_KEY,
 } from '@project/api-core-auth-api';
 import { Observable, firstValueFrom } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class AccessTokenGuard extends AuthGuard(ACCESS_TOKEN_STRATEGY_KEY) {
     );
 
     this.logger.debug('skipAccessTokenGuard', {
-      skipAccessTokenGuard: !!skipAccessTokenGuard
+      skipAccessTokenGuard: !!skipAccessTokenGuard,
     });
 
     if (skipAccessTokenGuard) {

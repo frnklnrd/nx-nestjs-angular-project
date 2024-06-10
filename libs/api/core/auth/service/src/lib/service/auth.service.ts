@@ -2,7 +2,7 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
-  UnauthorizedException
+  UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +12,7 @@ import {
   ChangePasswordResultDto,
   ResetPasswordConfirmResultDto,
   ResetPasswordRequestResultDto,
-  UserToken
+  UserToken,
 } from '@project/api-core-auth-model';
 import { CryptoUtilService } from '@project/api-core-util-crypto';
 import { UserOutDto } from '@project/api-module-users-model';
@@ -52,7 +52,7 @@ export class AuthService extends AbstractAppService {
     }
 
     const userTokensInfo = await this.userTokensRepository.findOneBy({
-      id: user.id
+      id: user.id,
     });
 
     const passwordMatches = await this.cryptoUtilService.comparePassword(
@@ -71,7 +71,7 @@ export class AuthService extends AbstractAppService {
         id: user.id,
         //-------------------------------------
         accessFailedAttempts: accessFailedAttemptsCount,
-        accessLastAttemptAt: new Date()
+        accessLastAttemptAt: new Date(),
         //-------------------------------------
       });
 
@@ -97,7 +97,7 @@ export class AuthService extends AbstractAppService {
       //-------------------------------------
       changePasswordFailedAttempts: 0,
       //-------------------------------------
-      resetPasswordAttempts: 0
+      resetPasswordAttempts: 0,
       //-------------------------------------
     });
 
@@ -105,7 +105,7 @@ export class AuthService extends AbstractAppService {
       sub: user.id as string,
       username: user.username as string,
       properties: plainToClass(UserOutDto, user),
-      permissions: user.getPermissions()
+      permissions: user.getPermissions(),
     };
 
     const tokens = await this.generateAccessAndRefreshTokens(payload);
@@ -120,12 +120,12 @@ export class AuthService extends AbstractAppService {
     const result: AuthTokensResultDto = {
       accessToken: {
         tokenValue: tokens.accessToken,
-        expiresIn: this.cryptoUtilService.getAccessTokenExpiresIn()
+        expiresIn: this.cryptoUtilService.getAccessTokenExpiresIn(),
       },
       refreshToken: {
         tokenValue: tokens.refreshToken,
-        expiresIn: this.cryptoUtilService.getRefreshTokenExpiresIn()
-      }
+        expiresIn: this.cryptoUtilService.getRefreshTokenExpiresIn(),
+      },
     };
 
     this.logger.debug('signIn - end');
@@ -169,7 +169,7 @@ export class AuthService extends AbstractAppService {
       sub: user.id as string,
       username: user.username as string,
       properties: plainToClass(UserOutDto, user),
-      permissions: user.getPermissions()
+      permissions: user.getPermissions(),
     };
 
     const tokens = await this.generateAccessAndRefreshTokens(payload);
@@ -184,12 +184,12 @@ export class AuthService extends AbstractAppService {
     const result = {
       accessToken: {
         tokenValue: tokens.accessToken,
-        expiresIn: this.cryptoUtilService.getAccessTokenExpiresIn()
+        expiresIn: this.cryptoUtilService.getAccessTokenExpiresIn(),
       },
       refreshToken: {
         tokenValue: tokens.refreshToken,
-        expiresIn: this.cryptoUtilService.getRefreshTokenExpiresIn()
-      }
+        expiresIn: this.cryptoUtilService.getRefreshTokenExpiresIn(),
+      },
     };
 
     this.logger.debug('refreshToken - end');
@@ -229,7 +229,7 @@ export class AuthService extends AbstractAppService {
     }
 
     const userTokensInfo = await this.userTokensRepository.findOneBy({
-      id: user.id
+      id: user.id,
     });
 
     const passwordMatches = await this.cryptoUtilService.comparePassword(
@@ -249,7 +249,7 @@ export class AuthService extends AbstractAppService {
         id: user.id,
         //-------------------------------------
         changePasswordFailedAttempts: changePasswordFailedAttemptsCount,
-        changePasswordLastAttemptAt: new Date()
+        changePasswordLastAttemptAt: new Date(),
         //-------------------------------------
       });
 
@@ -275,7 +275,7 @@ export class AuthService extends AbstractAppService {
       changePasswordLastAttemptAt: new Date(),
       changePasswordLastChangeAt: new Date(),
       //-------------------------------------
-      resetPasswordAttempts: 0
+      resetPasswordAttempts: 0,
       //-------------------------------------
     });
 
@@ -284,7 +284,7 @@ export class AuthService extends AbstractAppService {
     this.logger.debug('changePassword - end');
 
     return {
-      passwordChanged: true
+      passwordChanged: true,
     };
   }
 
@@ -314,7 +314,7 @@ export class AuthService extends AbstractAppService {
     }
 
     const userTokensInfo = await this.userTokensRepository.findOneBy({
-      id: user.id
+      id: user.id,
     });
 
     const resetPasswordAttemptsCount = userTokensInfo?.resetPasswordAttempts
@@ -325,7 +325,7 @@ export class AuthService extends AbstractAppService {
       id: user.id,
       //-------------------------------------
       resetPasswordAttempts: resetPasswordAttemptsCount,
-      resetPasswordLastAttemptAt: new Date()
+      resetPasswordLastAttemptAt: new Date(),
       //-------------------------------------
     });
 
@@ -341,7 +341,7 @@ export class AuthService extends AbstractAppService {
 
     const payload = {
       sub: null,
-      username: usernameOrEmail as string
+      username: usernameOrEmail as string,
     };
 
     const tokens = await this.generateResetPasswordToken(payload);
@@ -359,7 +359,7 @@ export class AuthService extends AbstractAppService {
     this.logger.debug('resetPasswordRequest - end');
 
     return {
-      tokenSend: true
+      tokenSend: true,
     };
   }
 
@@ -399,7 +399,7 @@ export class AuthService extends AbstractAppService {
     */
 
     const userTokensInfo = await this.userTokensRepository.findOneBy({
-      id: user.id
+      id: user.id,
     });
 
     await this.userTokensRepository.save({
@@ -410,7 +410,7 @@ export class AuthService extends AbstractAppService {
       changePasswordFailedAttempts: 0,
       //-------------------------------------
       resetPasswordAttempts: 0,
-      resetPasswordLastResetAt: new Date()
+      resetPasswordLastResetAt: new Date(),
       //-------------------------------------
     });
 
@@ -421,7 +421,7 @@ export class AuthService extends AbstractAppService {
     this.logger.debug('resetPasswordConfirm - end');
 
     return {
-      passwordChanged: true
+      passwordChanged: true,
     };
   }
   // ---------------------------------------------------------
@@ -440,7 +440,7 @@ export class AuthService extends AbstractAppService {
 
     return {
       accessToken,
-      refreshToken
+      refreshToken,
     };
   }
 
@@ -452,7 +452,7 @@ export class AuthService extends AbstractAppService {
       await this.cryptoUtilService.signAsyncWithResetPasswordConfig(payload);
 
     return {
-      resetPasswordToken
+      resetPasswordToken,
     };
   }
 
@@ -465,7 +465,7 @@ export class AuthService extends AbstractAppService {
       : {
           id: undefined,
           accessToken: undefined,
-          refreshToken: undefined
+          refreshToken: undefined,
         };
   }
 
@@ -486,7 +486,7 @@ export class AuthService extends AbstractAppService {
       refreshToken: (hashTokens && refreshToken
         ? await this.cryptoUtilService.hashTokenData(refreshToken as string)
         : null) as string,
-      refreshTokenUpdatedAt: new Date()
+      refreshTokenUpdatedAt: new Date(),
     });
   }
 
@@ -504,7 +504,7 @@ export class AuthService extends AbstractAppService {
             resetPasswordToken as string
           )
         : null) as string,
-      resetPasswordTokenUpdatedAt: new Date()
+      resetPasswordTokenUpdatedAt: new Date(),
     });
   }
 

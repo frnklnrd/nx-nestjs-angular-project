@@ -36,7 +36,7 @@ export class AccessTokenStrategy extends PassportStrategy(
     const accessToken = this.extractTokenFromHeader(request);
 
     this.logger.debug('accessToken', {
-      accessToken
+      accessToken,
     });
 
     if (!accessToken) {
@@ -64,7 +64,7 @@ export class AccessTokenStrategy extends PassportStrategy(
       this.logger.debug('user', {
         id: user?.id,
         isActive: user?.isActive,
-        isBlocked: user?.isBlocked
+        isBlocked: user?.isBlocked,
       });
 
       if (!user || !user?.isActive || user.isBlocked) {
@@ -74,7 +74,7 @@ export class AccessTokenStrategy extends PassportStrategy(
       const userTokens = await this.authService.findUserTokensById(payload.sub);
 
       this.logger.debug('accessToken', {
-        acccessToken: userTokens?.accessToken
+        acccessToken: userTokens?.accessToken,
       });
 
       if (!userTokens?.accessToken) {
@@ -87,7 +87,7 @@ export class AccessTokenStrategy extends PassportStrategy(
       );
 
       this.logger.debug('accessTokenMatches:', {
-        accessTokenMatches
+        accessTokenMatches,
       });
 
       if (!accessTokenMatches)

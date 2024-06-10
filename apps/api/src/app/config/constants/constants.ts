@@ -1,3 +1,3 @@
 export const appConstants = {
-  apiV1Prefix: 'v1'
+  apiV1Prefix: 'v1',
 };

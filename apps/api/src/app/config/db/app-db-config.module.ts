@@ -16,10 +16,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         entities: [],
         synchronize: true, // Not true in production,
         autoLoadEntities: true,
-        logging: true
+        logging: true,
       }),
-      inject: [ConfigService]
-    })
-  ]
+      inject: [ConfigService],
+    }),
+  ],
 })
 export class AppDbConfigModule {}

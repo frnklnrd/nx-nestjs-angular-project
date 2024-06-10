@@ -10,12 +10,12 @@ import { AppDbConfigModule } from './db/app-db-config.module';
       isGlobal: true,
       expandVariables: true,
       cache: false, // True in production
-      load: [configuration]
+      load: [configuration],
     }),
     //-------------------------------------------------
-    AppDbConfigModule
+    AppDbConfigModule,
     //-------------------------------------------------
-  ]
+  ],
 })
 export class AppConfigModule {
   protected readonly logger = new Logger(AppConfigModule.name);

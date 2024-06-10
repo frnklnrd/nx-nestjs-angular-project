@@ -5,6 +5,6 @@ import { Global, Module } from '@nestjs/common';
   imports: [],
   controllers: [],
   providers: [],
-  exports: []
+  exports: [],
 })
 export class ApiCoreAuthApiModule {}

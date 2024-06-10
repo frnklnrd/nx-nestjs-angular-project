@@ -17,8 +17,8 @@ import { AppResourcesModule } from './resources/app.resources.module';
     // ---------------
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, 'assets'),
-      serveRoot: '/assets'
-    })
+      serveRoot: '/assets',
+    }),
     // ---------------
   ],
   controllers: [
@@ -27,6 +27,6 @@ import { AppResourcesModule } from './resources/app.resources.module';
   providers: [
     // AppService
   ],
-  exports: []
+  exports: [],
 })
 export class AppModule {}

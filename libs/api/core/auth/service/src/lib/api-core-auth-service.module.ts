@@ -10,10 +10,10 @@ import { AuthService } from './service/auth.service';
     ApiCoreUtilCryptoModule,
     ApiCoreAuthModelModule,
     ApiModuleUsersModelModule,
-    ApiModuleUsersServiceModule
+    ApiModuleUsersServiceModule,
   ],
   controllers: [],
   providers: [AuthService],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class ApiCoreAuthServiceModule {}

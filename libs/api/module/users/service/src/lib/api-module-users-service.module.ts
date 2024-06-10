@@ -7,6 +7,6 @@ import { UsersService } from './service/users.service';
   imports: [ApiCoreUtilCryptoModule, ApiModuleUsersModelModule],
   controllers: [],
   providers: [UsersService],
-  exports: [UsersService]
+  exports: [UsersService],
 })
 export class ApiModuleUsersServiceModule {}

@@ -13,20 +13,20 @@ import { CryptoUtilService } from './service/crypto-util.service';
             'jwt.access_token.secret'
           ) as string,
           signOptions: {
-            expiresIn: configService.get<string>('jwt.expires_in') as string
+            expiresIn: configService.get<string>('jwt.expires_in') as string,
             // algorithm: 'HS256',
-          }
+          },
         };
       },
-      inject: [ConfigService]
-    })
+      inject: [ConfigService],
+    }),
   ],
   controllers: [],
   providers: [
     //-------------------------------------
-    CryptoUtilService
+    CryptoUtilService,
     //-------------------------------------
   ],
-  exports: [CryptoUtilService, JwtModule]
+  exports: [CryptoUtilService, JwtModule],
 })
 export class ApiCoreUtilCryptoModule {}

@@ -67,7 +67,7 @@ export class CryptoUtilService extends AbstractAppService {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: this.getAccessTokenSecret(),
       passReqToCallback: true,
-      ignoreExpiration: false
+      ignoreExpiration: false,
     };
   }
 
@@ -76,7 +76,7 @@ export class CryptoUtilService extends AbstractAppService {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: this.getRefreshTokenSecret(),
       passReqToCallback: true,
-      ignoreExpiration: false
+      ignoreExpiration: false,
     };
   }
 
@@ -85,7 +85,7 @@ export class CryptoUtilService extends AbstractAppService {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: this.getResetPasswordSecret(),
       passReqToCallback: true,
-      ignoreExpiration: false
+      ignoreExpiration: false,
     };
   }
 
@@ -94,7 +94,7 @@ export class CryptoUtilService extends AbstractAppService {
   async signAsyncWithAccessTokenConfig(payload: any): Promise<string> {
     return this.jwtService.signAsync(payload, {
       secret: this.getAccessTokenSecret(),
-      expiresIn: this.getAccessTokenExpiresIn()
+      expiresIn: this.getAccessTokenExpiresIn(),
       // privateKey?: jwt.Secret;
     });
   }
@@ -102,7 +102,7 @@ export class CryptoUtilService extends AbstractAppService {
   async signAsyncWithRefreshTokenConfig(payload: any): Promise<string> {
     return this.jwtService.signAsync(payload, {
       secret: this.getRefreshTokenSecret(),
-      expiresIn: this.getRefreshTokenExpiresIn()
+      expiresIn: this.getRefreshTokenExpiresIn(),
       // privateKey?: jwt.Secret;
     });
   }
@@ -110,7 +110,7 @@ export class CryptoUtilService extends AbstractAppService {
   async signAsyncWithResetPasswordConfig(payload: any): Promise<string> {
     return this.jwtService.signAsync(payload, {
       secret: this.getResetPasswordSecret(),
-      expiresIn: this.getResetPasswordExpiresIn()
+      expiresIn: this.getResetPasswordExpiresIn(),
       // privateKey?: jwt.Secret;
     });
   }
@@ -119,14 +119,14 @@ export class CryptoUtilService extends AbstractAppService {
 
   async verifyAsyncWithAccessTokenConfig(token: string): Promise<any> {
     return this.jwtService.verifyAsync(token as string, {
-      secret: this.getAccessTokenSecret()
+      secret: this.getAccessTokenSecret(),
       // publicKey?: string | Buffer;
     });
   }
 
   async verifyAsyncWithRefreshTokenConfig(refreshToken: string): Promise<any> {
     return this.jwtService.verifyAsync(refreshToken as string, {
-      secret: this.getRefreshTokenSecret()
+      secret: this.getRefreshTokenSecret(),
       // publicKey?: string | Buffer;
     });
   }
@@ -135,7 +135,7 @@ export class CryptoUtilService extends AbstractAppService {
     resetPasswordToken: string
   ): Promise<any> {
     return this.jwtService.verifyAsync(resetPasswordToken as string, {
-      secret: this.getResetPasswordSecret()
+      secret: this.getResetPasswordSecret(),
       // publicKey?: string | Buffer;
     });
   }
