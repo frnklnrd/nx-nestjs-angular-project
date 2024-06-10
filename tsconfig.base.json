@@ -13,29 +13,21 @@
     "resolveJsonModule": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@project/api-core-api": [
-        "libs/api/core/api/src/index.ts"
+      "@project/api-client-ng-api-connector": [
+        "libs/api-client/ng-api-connector/src/index.ts"
       ],
-      "@project/api-core-auth-api": [
-        "libs/api/core/auth/api/src/index.ts"
-      ],
+      "@project/api-core-api": ["libs/api/core/api/src/index.ts"],
+      "@project/api-core-auth-api": ["libs/api/core/auth/api/src/index.ts"],
       "@project/api-core-auth-decorator": [
         "libs/api/core/auth/decorator/src/index.ts"
       ],
-      "@project/api-core-auth-guard": [
-        "libs/api/core/auth/guard/src/index.ts"
-      ],
-      "@project/api-core-auth-model": [
-        "libs/api/core/auth/model/src/index.ts"
-      ],
+      "@project/api-core-auth-guard": ["libs/api/core/auth/guard/src/index.ts"],
+      "@project/api-core-auth-model": ["libs/api/core/auth/model/src/index.ts"],
       "@project/api-core-auth-resource": [
         "libs/api/core/auth/resource/src/index.ts"
       ],
@@ -71,8 +63,5 @@
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

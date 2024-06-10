@@ -1,0 +1,477 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "operationId": "signIn",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SignInDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User login",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AuthTokensResultDto" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"]
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "operationId": "getProfileInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User profile information",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProfileResultDto" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "operationId": "logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User logout",
+            "content": {
+              "application/json": { "schema": { "type": "boolean" } }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/change-password": {
+      "post": {
+        "operationId": "changePassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChangePasswordInDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change current user password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePasswordResultDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "operationId": "refreshToken",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RefreshTokenInDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Refresh user tokens",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AuthTokensResultDto" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/reset-password/request": {
+      "post": {
+        "operationId": "resetPasswordRequest",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequestInDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request to reset password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordRequestResultDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["auth"]
+      }
+    },
+    "/auth/reset-password/confirm": {
+      "post": {
+        "operationId": "resetPasswordConfirm",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordConfirmInDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reset password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordRequestResultDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/v1/users": {
+      "post": {
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserInDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of users matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserOutDto" }
+              }
+            }
+          },
+          "400": { "description": "Invalid input data" },
+          "500": { "description": "Internal server error" }
+        },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/v1/users/search/paginated": {
+      "post": {
+        "operationId": "searchPaginated",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SearchUsersInDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of users matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedSearchResultDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/v1/users/{id}": {
+      "get": {
+        "operationId": "findOneUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      },
+      "patch": {
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateUserInDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      },
+      "delete": {
+        "operationId": "removeUser",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/v1/users/{id}/set-password": {
+      "patch": {
+        "operationId": "setPassword",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SetPasswordInDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "" } },
+        "tags": ["users"],
+        "security": [{ "bearer": [] }]
+      }
+    }
+  },
+  "info": {
+    "title": "API Documentation",
+    "description": "API Description",
+    "version": "0.0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [{ "url": "/api" }],
+  "components": {
+    "securitySchemes": {
+      "bearer": { "scheme": "bearer", "bearerFormat": "JWT", "type": "http" }
+    },
+    "schemas": {
+      "SignInDto": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["username", "password"]
+      },
+      "AccessTokenDto": {
+        "type": "object",
+        "properties": {
+          "tokenValue": { "type": "string" },
+          "expiresIn": { "type": "number" }
+        },
+        "required": ["tokenValue", "expiresIn"]
+      },
+      "RefreshTokenDto": {
+        "type": "object",
+        "properties": {
+          "tokenValue": { "type": "string" },
+          "expiresIn": { "type": "number" }
+        },
+        "required": ["tokenValue", "expiresIn"]
+      },
+      "AuthTokensResultDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": { "$ref": "#/components/schemas/AccessTokenDto" },
+          "refreshToken": { "$ref": "#/components/schemas/RefreshTokenDto" }
+        },
+        "required": ["accessToken", "refreshToken"]
+      },
+      "ProfileResultDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "username": { "type": "string" },
+          "properties": { "type": "object" },
+          "permissions": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "username", "properties", "permissions"]
+      },
+      "ChangePasswordInDto": {
+        "type": "object",
+        "properties": {
+          "currentPassword": { "type": "string" },
+          "newPassword": { "type": "string" }
+        },
+        "required": ["currentPassword", "newPassword"]
+      },
+      "ChangePasswordResultDto": {
+        "type": "object",
+        "properties": { "passwordChanged": { "type": "boolean" } },
+        "required": ["passwordChanged"]
+      },
+      "RefreshTokenInDto": {
+        "type": "object",
+        "properties": { "refreshToken": { "type": "string" } },
+        "required": ["refreshToken"]
+      },
+      "ResetPasswordRequestInDto": {
+        "type": "object",
+        "properties": { "usernameOrEmail": { "type": "string" } },
+        "required": ["usernameOrEmail"]
+      },
+      "ResetPasswordRequestResultDto": {
+        "type": "object",
+        "properties": { "tokenSend": { "type": "boolean" } },
+        "required": ["tokenSend"]
+      },
+      "ResetPasswordConfirmInDto": {
+        "type": "object",
+        "properties": {
+          "usernameOrEmail": { "type": "string" },
+          "newPassword": { "type": "string" }
+        },
+        "required": ["usernameOrEmail", "newPassword"]
+      },
+      "CreateUserInDto": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "isAdmin": { "type": "boolean" },
+          "isActive": { "type": "boolean" },
+          "password": { "type": "string" }
+        },
+        "required": ["password"]
+      },
+      "UserOutDto": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "isAdmin": { "type": "boolean" },
+          "isActive": { "type": "boolean" }
+        },
+        "required": ["username", "email", "isAdmin", "isActive"]
+      },
+      "PaginationInDto": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "number" },
+          "perPage": { "type": "number" }
+        },
+        "required": ["page", "perPage"]
+      },
+      "SortInDto": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "order": { "type": "string" }
+        },
+        "required": ["field", "order"]
+      },
+      "SearchUsersInDto": {
+        "type": "object",
+        "properties": {
+          "pagination": { "$ref": "#/components/schemas/PaginationInDto" },
+          "sort": { "$ref": "#/components/schemas/SortInDto" },
+          "filter": { "type": "object" },
+          "meta": { "type": "object" }
+        }
+      },
+      "PaginatedSearchResultDto": {
+        "type": "object",
+        "properties": {
+          "items": { "type": "array", "items": { "type": "string" } },
+          "total": { "type": "number" },
+          "page": { "type": "number" },
+          "limit": { "type": "number" }
+        },
+        "required": ["items", "total", "page", "limit"]
+      },
+      "UpdateUserInDto": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "isAdmin": { "type": "boolean" },
+          "isActive": { "type": "boolean" }
+        },
+        "required": ["username", "email", "isAdmin", "isActive"]
+      },
+      "SetPasswordInDto": {
+        "type": "object",
+        "properties": { "newPassword": { "type": "string" } },
+        "required": ["newPassword"]
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Open Api Specification file",
+    "url": "/api/docs/swagger.json"
+  }
+}
