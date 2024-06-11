@@ -136,7 +136,7 @@ export const APP_MENU_MODEL = [
       {
         label: 'Landing',
         icon: 'pi pi-fw pi-globe',
-        routerLink: ['/app/landing']
+        routerLink: ['/']
       },
       {
         label: 'Auth',
@@ -145,17 +145,17 @@ export const APP_MENU_MODEL = [
           {
             label: 'Login',
             icon: 'pi pi-fw pi-sign-in',
-            routerLink: ['/app/auth/login']
+            routerLink: ['/auth/login']
           },
           {
             label: 'Error',
             icon: 'pi pi-fw pi-times-circle',
-            routerLink: ['/app/auth/error']
+            routerLink: ['/auth/error']
           },
           {
             label: 'Access Denied',
             icon: 'pi pi-fw pi-lock',
-            routerLink: ['/app/auth/access']
+            routerLink: ['/auth/access']
           }
         ]
       },
@@ -172,7 +172,7 @@ export const APP_MENU_MODEL = [
       {
         label: 'Not Found',
         icon: 'pi pi-fw pi-exclamation-circle',
-        routerLink: ['/app/notfound']
+        routerLink: ['/notfound']
       },
       {
         label: 'Empty',
