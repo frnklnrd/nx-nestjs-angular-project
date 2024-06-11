@@ -1,0 +1,17 @@
+{
+  "name": "@project/app-module-api-feature",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.11",
+    "@project/app-core-util-cached": "0.0.1",
+    "@angular/router": "^17.3.11",
+    "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
+    "@project/app-core-api": "0.0.1",
+    "@project/app-core-util-flow": "0.0.1",
+    "primeng": "^17.18.0",
+    "rxjs": "^7.8.0"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,35 @@
+{
+  "error": {
+    "unknown": ""
+  },
+  "language": {
+    "ca": {
+      "name": ""
+    },
+    "en": {
+      "name": ""
+    },
+    "es": {
+      "name": ""
+    }
+  },
+  "layout": {
+    "confirm": {
+      "btn": {
+        "no": "",
+        "yes": ""
+      }
+    },
+    "message": {
+      "confirmation": {
+        "errorHeader": "",
+        "successHeader": ""
+      }
+    }
+  },
+  "login": {
+    "confirmation": {
+      "successDetail": ""
+    }
+  }
+}

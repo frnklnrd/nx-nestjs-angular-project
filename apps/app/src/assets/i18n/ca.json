@@ -1,0 +1,64 @@
+{
+  "error": {
+    "100": "Continuar",
+    "101": "Canviant protocols",
+    "200": "OK",
+    "201": "Creat",
+    "202": "Acceptat",
+    "204": "Sense contingut",
+    "300": "Múltiples opcions",
+    "301": "Mogut permanentment",
+    "302": "Trobat",
+    "304": "No modificat",
+    "400": "Petició incorrecta",
+    "401": "No autoritzat",
+    "403": "Prohibit",
+    "404": "No trobat",
+    "405": "Mètode no permès",
+    "406": "No acceptable",
+    "500": "Error intern del servidor",
+    "501": "No implementat",
+    "502": "Bad Gateway",
+    "503": "Servei no disponible",
+    "504": "Gateway Timeout",
+    "505": "Versió HTTP no compatible",
+    "unknown": "Error desconegut del servidor"
+  },
+  "language": {
+    "ca": {
+      "name": ""
+    },
+    "en": {
+      "name": ""
+    },
+    "es": {
+      "name": ""
+    }
+  },
+  "layout": {
+    "confirm": {
+      "btn": {
+        "no": "",
+        "yes": ""
+      }
+    },
+    "message": {
+      "confirmation": {
+        "errorDetail": "Ompliu els camps requerits",
+        "errorHeader": "Error",
+        "paymentEdited": "",
+        "successAddDetail": "Creat",
+        "successHeader": "Èxit",
+        "successUpdateDetail": "Actualitzat"
+      },
+      "information": {
+        "informationHeader": "INFORMACIÓ"
+      }
+    }
+  },
+  "login": {
+    "confirmation": {
+      "successDetail": "Acceso amb éxito!!!"
+    }
+  }
+}

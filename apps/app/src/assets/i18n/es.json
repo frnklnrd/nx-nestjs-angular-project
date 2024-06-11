@@ -1,0 +1,64 @@
+{
+  "error": {
+    "100": "Continuar",
+    "101": "Cambiando protocolos",
+    "200": "OK",
+    "201": "Creado",
+    "202": "Aceptado",
+    "204": "Sin contenido",
+    "300": "Múltiples opciones",
+    "301": "Movido permanentemente",
+    "302": "Encontrado",
+    "304": "No modificado",
+    "400": "Solicitud incorrecta",
+    "401": "No autorizado",
+    "403": "Prohibido",
+    "404": "No encontrado",
+    "405": "Método no permitido",
+    "406": "No aceptable",
+    "500": "Error interno del servidor",
+    "501": "No implementado",
+    "502": "Bad Gateway",
+    "503": "Servicio no disponible",
+    "504": "Gateway Timeout",
+    "505": "HTTP Version Not Supported",
+    "unknown": "Error desconocido del servidor"
+  },
+  "language": {
+    "ca": {
+      "name": "Catalán"
+    },
+    "en": {
+      "name": "Inglés"
+    },
+    "es": {
+      "name": "Español"
+    }
+  },
+  "layout": {
+    "confirm": {
+      "btn": {
+        "no": "No",
+        "yes": "Sí"
+      }
+    },
+    "message": {
+      "confirmation": {
+        "errorDetail": "Complete los campos requeridos",
+        "errorHeader": "Error",
+        "paymentEdited": "",
+        "successAddDetail": "Creado",
+        "successHeader": "Correcto",
+        "successUpdateDetail": "Actualizado"
+      },
+      "information": {
+        "informationHeader": "INFORMACIÓN"
+      }
+    }
+  },
+  "login": {
+    "confirmation": {
+      "successDetail": "Acceso Exitoso!!!"
+    }
+  }
+}

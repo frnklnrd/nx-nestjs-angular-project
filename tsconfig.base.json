@@ -7,14 +7,125 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
+    "resolveJsonModule": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@project/api-client-ng-api-connector": [
+        "libs/api-client/ng-api-connector/src/index.ts"
+      ],
+      "@project/api-core-api": ["libs/api/core/api/src/index.ts"],
+      "@project/api-core-auth-api": ["libs/api/core/auth/api/src/index.ts"],
+      "@project/api-core-auth-decorator": [
+        "libs/api/core/auth/decorator/src/index.ts"
+      ],
+      "@project/api-core-auth-guard": ["libs/api/core/auth/guard/src/index.ts"],
+      "@project/api-core-auth-model": ["libs/api/core/auth/model/src/index.ts"],
+      "@project/api-core-auth-resource": [
+        "libs/api/core/auth/resource/src/index.ts"
+      ],
+      "@project/api-core-auth-service": [
+        "libs/api/core/auth/service/src/index.ts"
+      ],
+      "@project/api-core-util-crypto": [
+        "libs/api/core/util/crypto/src/index.ts"
+      ],
+      "@project/api-module-accounts-api": [
+        "libs/api/module/accounts/api/src/index.ts"
+      ],
+      "@project/api-module-accounts-model": [
+        "libs/api/module/accounts/model/src/index.ts"
+      ],
+      "@project/api-module-accounts-resource": [
+        "libs/api/module/accounts/resource/src/index.ts"
+      ],
+      "@project/api-module-accounts-service": [
+        "libs/api/module/accounts/service/src/index.ts"
+      ],
+      "@project/api-module-users-api": [
+        "libs/api/module/users/api/src/index.ts"
+      ],
+      "@project/api-module-users-model": [
+        "libs/api/module/users/model/src/index.ts"
+      ],
+      "@project/api-module-users-resource": [
+        "libs/api/module/users/resource/src/index.ts"
+      ],
+      "@project/api-module-users-service": [
+        "libs/api/module/users/service/src/index.ts"
+      ],
+      "@project/app-core-api": ["libs/app/core/api/src/index.ts"],
+      "@project/app-core-auth-api": ["libs/app/core/auth/api/src/index.ts"],
+      "@project/app-core-auth-guard": ["libs/app/core/auth/guard/src/index.ts"],
+      "@project/app-core-auth-interceptor": [
+        "libs/app/core/auth/interceptor/src/index.ts"
+      ],
+      "@project/app-core-auth-service": [
+        "libs/app/core/auth/service/src/index.ts"
+      ],
+      "@project/app-core-auth-store": ["libs/app/core/auth/store/src/index.ts"],
+      "@project/app-core-util-cached": [
+        "libs/app/core/util/cached/src/index.ts"
+      ],
+      "@project/app-core-util-config": [
+        "libs/app/core/util/config/src/index.ts"
+      ],
+      "@project/app-core-util-crypto": [
+        "libs/app/core/util/crypto/src/index.ts"
+      ],
+      "@project/app-core-util-flow": ["libs/app/core/util/flow/src/index.ts"],
+      "@project/app-core-util-google": [
+        "libs/app/core/util/google/src/index.ts"
+      ],
+      "@project/app-core-util-i18n": ["libs/app/core/util/i18n/src/index.ts"],
+      "@project/app-core-util-list": ["libs/app/core/util/list/src/index.ts"],
+      "@project/app-core-util-loader": [
+        "libs/app/core/util/loader/src/index.ts"
+      ],
+      "@project/app-core-util-logger": [
+        "libs/app/core/util/logger/src/index.ts"
+      ],
+      "@project/app-core-util-storage": [
+        "libs/app/core/util/storage/src/index.ts"
+      ],
+      "@project/app-module-api-feature": [
+        "libs/app/module/api/feature/src/index.ts"
+      ],
+      "@project/app-module-api-service": [
+        "libs/app/module/api/service/src/index.ts"
+      ],
+      "@project/app-module-api-store": [
+        "libs/app/module/api/store/src/index.ts"
+      ],
+      "@project/app-module-api-ui": ["libs/app/module/api/ui/src/index.ts"],
+      "@project/app-module-app-feature": [
+        "libs/app/module/app/feature/src/index.ts"
+      ],
+      "@project/app-module-app-service": [
+        "libs/app/module/app/service/src/index.ts"
+      ],
+      "@project/app-module-app-store": [
+        "libs/app/module/app/store/src/index.ts"
+      ],
+      "@project/app-module-app-ui": ["libs/app/module/app/ui/src/index.ts"],
+      "@project/app-module-users-feature": [
+        "libs/app/module/users/feature/src/index.ts"
+      ],
+      "@project/app-module-users-service": [
+        "libs/app/module/users/service/src/index.ts"
+      ],
+      "@project/app-module-users-store": [
+        "libs/app/module/users/store/src/index.ts"
+      ],
+      "@project/app-module-users-ui": ["libs/app/module/users/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

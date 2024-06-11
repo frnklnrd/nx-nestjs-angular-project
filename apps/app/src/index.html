@@ -2,12 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>app</title>
+    <title>App</title>
     <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta content="App" name="description" />
+    <meta content="App" name="keyword" />
+    <meta content="App" name="author" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link href="assets/icons/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link
+      id="theme-css"
+      rel="stylesheet"
+      type="text/css"
+      href="assets/layout/styles/theme/lara-light-indigo/theme.css"
+    />
   </head>
   <body>
-    <app-root></app-root>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <app-root>
+      <!-- App Loading... -->
+      <div
+        style="
+          text-align: center;
+          padding-top: calc(100vh / 2 - 15px);
+          height: 100vh;
+        "
+      >
+        <i class="spinner-grow spinner-grow-sm"></i>
+        <span class="m-1">&nbsp;</span>
+      </div>
+      <div id="loader-container">
+        <div class="row">
+          <div id="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="loading"></div>
+          </div>
+        </div>
+      </div>
+      <!-- App Loading... -->
+    </app-root>
   </body>
 </html>

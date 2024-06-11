@@ -1,0 +1,5 @@
+.topbar-wrapper img {
+  content: url('https://nestjs.com/img/logo_text.svg');
+  width: 200px;
+  height: auto;
+}
