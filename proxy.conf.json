@@ -1,0 +1,20 @@
+{
+  "/api-dev": {
+    "target": "http://localhost:3000",
+    "pathRewrite": {
+      "^/api-dev": "/api"
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api": {
+    "target": "http://localhost:3000",
+    "pathRewrite": {
+      "^/api": "/api"
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
