@@ -34,7 +34,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
     const resetPasswordToken = this.extractTokenFromHeader(request);
 
     this.logger.debug('resetPasswordToken', {
-      resetPasswordToken,
+      resetPasswordToken
     });
 
     if (!resetPasswordToken) {
@@ -70,7 +70,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
       this.logger.debug('user', {
         id: user?.id,
         isActive: user?.isActive,
-        isBlocked: user?.isBlocked,
+        isBlocked: user?.isBlocked
       });
 
       if (!user || !user?.isActive || user.isBlocked) {
@@ -91,7 +91,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
       );
 
       this.logger.debug('resetPasswordToken', {
-        resetPasswordToken: userTokens?.resetPasswordToken,
+        resetPasswordToken: userTokens?.resetPasswordToken
       });
 
       if (!userTokens?.resetPasswordToken) {
@@ -105,7 +105,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
         );
 
       this.logger.debug('resetPasswordTokenMatches:', {
-        resetPasswordTokenMatches,
+        resetPasswordTokenMatches
       });
 
       if (!resetPasswordTokenMatches)

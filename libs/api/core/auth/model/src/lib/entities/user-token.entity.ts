@@ -13,7 +13,7 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'access_token_updated_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   accessTokenUpdatedAt?: Date;
 
@@ -26,7 +26,7 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'refresh_token_updated_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   refreshTokenUpdatedAt?: Date;
 
@@ -39,7 +39,7 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'reset_password_token_updated_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   resetPasswordTokenUpdatedAt?: Date;
 
@@ -51,14 +51,14 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'access_last_attempt_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   accessLastAttemptAt?: Date;
 
   @Column({
     name: 'access_last_access_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   accessLastAccessAt?: Date;
 
@@ -67,21 +67,21 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'change_password_failed_attempts',
     type: 'int',
-    nullable: true,
+    nullable: true
   })
   changePasswordFailedAttempts?: number;
 
   @Column({
     name: 'change_password_last_attempt_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   changePasswordLastAttemptAt?: Date;
 
   @Column({
     name: 'change_password_last_change_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   changePasswordLastChangeAt?: Date;
 
@@ -93,14 +93,14 @@ export class UserToken extends BaseResource {
   @Column({
     name: 'reset_password_last_attempt_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   resetPasswordLastAttemptAt?: Date;
 
   @Column({
     name: 'reset_password_last_reset_at',
     type: 'timestamp',
-    nullable: true,
+    nullable: true
   })
   resetPasswordLastResetAt?: Date;
 

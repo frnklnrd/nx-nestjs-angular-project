@@ -9,7 +9,7 @@ import {
   DocumentBuilder,
   SwaggerCustomOptions,
   SwaggerDocumentOptions,
-  SwaggerModule,
+  SwaggerModule
 } from '@nestjs/swagger';
 
 import * as packageJson from '../package.json';
@@ -18,11 +18,11 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: true,
+    cors: true
   });
 
   app.enableVersioning({
-    type: VersioningType.URI,
+    type: VersioningType.URI
   });
 
   const port = process.env.PORT || 3000;
@@ -39,8 +39,21 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('API Documentation')
-    .setDescription('API Description')
-    .setExternalDoc('Open Api Specification file', apiDocsSwaggerJsonUrl)
+    .setDescription(
+      'API Description.' +
+        '<br/><br/>' +
+        'Download the api docs file in JSON format <a target="_blank" href="' +
+        apiDocsSwaggerJsonUrl +
+        '">here</a>.' +
+        '<br/><br/>' +
+        'Download the api docs file in YAML format <a target="_blank" href="' +
+        apiDocsSwaggerYamlUrl +
+        '">here</a>.'
+    )
+    .setExternalDoc(
+      'Open Api Specification',
+      'https://swagger.io/specification/'
+    )
     .setVersion(packageJson?.version ?? '1.0')
     .addServer('/' + globalPrefix)
     //.setBasePath('/' + globalPrefix)
@@ -61,7 +74,7 @@ async function bootstrap() {
           return methodKey;
       }
       return methodKey;
-    },
+    }
   };
 
   const document = SwaggerModule.createDocument(app, config, options);
@@ -73,10 +86,10 @@ async function bootstrap() {
     explorer: true,
     swaggerOptions: {
       displayOperationId: false,
-      persistAuthorization: true,
+      persistAuthorization: true
     },
     customCssUrl: '/assets/swagger/custom.css',
-    customJs: '/assets/swagger/custom.js',
+    customJs: '/assets/swagger/custom.js'
   };
 
   SwaggerModule.setup(apiDocsSwaggerUiUrl, app, document, custom);

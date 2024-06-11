@@ -2,7 +2,7 @@ import { Global, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import {
   AccessTokenGuard,
-  ApiCoreAuthGuardModule,
+  ApiCoreAuthGuardModule
 } from '@project/api-core-auth-guard';
 import { ApiCoreAuthModelModule } from '@project/api-core-auth-model';
 import { ApiCoreAuthResourceModule } from '@project/api-core-auth-resource';
@@ -14,7 +14,7 @@ import { ApiCoreAuthResourceModule } from '@project/api-core-auth-resource';
     ApiCoreAuthModelModule,
     ApiCoreAuthResourceModule,
     //-------------------------------------
-    ApiCoreAuthGuardModule,
+    ApiCoreAuthGuardModule
     //-------------------------------------
   ],
 
@@ -22,14 +22,14 @@ import { ApiCoreAuthResourceModule } from '@project/api-core-auth-resource';
     //-------------------------------------
     {
       provide: APP_GUARD,
-      useClass: AccessTokenGuard,
-    },
+      useClass: AccessTokenGuard
+    }
     /*{
       provide: APP_GUARD,
       useClass: CheckPermissionGuard,
     },*/
     //-------------------------------------
   ],
-  exports: [],
+  exports: []
 })
 export class AppAuthModule {}

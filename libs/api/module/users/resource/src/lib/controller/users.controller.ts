@@ -9,24 +9,24 @@ import {
   Patch,
   Post,
   Request,
-  Response,
+  Response
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiProduces,
   ApiResponse,
-  ApiTags,
+  ApiTags
 } from '@nestjs/swagger';
 import {
   AbstractAppController,
-  PaginatedSearchResultDto,
+  PaginatedSearchResultDto
 } from '@project/api-core-api';
 import {
   CreateUserInDto,
   SearchUsersInDto,
   SetPasswordInDto,
   UpdateUserInDto,
-  UserOutDto,
+  UserOutDto
 } from '@project/api-module-users-model';
 import { UsersService } from '@project/api-module-users-service';
 import { plainToClass } from 'class-transformer';
@@ -36,7 +36,7 @@ import { Response as Res } from 'express';
 @ApiTags('users')
 @Controller({
   path: 'users',
-  version: '1',
+  version: '1'
 })
 export class UsersController extends AbstractAppController {
   protected getClassName(): string {
@@ -52,16 +52,16 @@ export class UsersController extends AbstractAppController {
   @ApiResponse({
     status: 200,
     description: 'List of users matching the search criteria',
-    type: UserOutDto,
+    type: UserOutDto
     // isArray: true,
   })
   @ApiResponse({
     status: 400,
-    description: 'Invalid input data',
+    description: 'Invalid input data'
   })
   @ApiResponse({
     status: 500,
-    description: 'Internal server error',
+    description: 'Internal server error'
   })
   @Post()
   async create(@Body() createUserDto: CreateUserInDto): Promise<UserOutDto> {
@@ -85,7 +85,7 @@ export class UsersController extends AbstractAppController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'List of users matching the search criteria',
-    type: PaginatedSearchResultDto<UserOutDto>,
+    type: PaginatedSearchResultDto<UserOutDto>
     // isArray: true,
   })
   @Post('search/paginated')
@@ -105,7 +105,7 @@ export class UsersController extends AbstractAppController {
       items: data.items.map((item) => plainToClass(UserOutDto, item)),
       total: data.total,
       page: data.page,
-      limit: data.limit,
+      limit: data.limit
     };
 
     this.logger.debug('searchPaginated - end');
@@ -113,7 +113,7 @@ export class UsersController extends AbstractAppController {
     return response
       .set({
         'Access-Control-Expose-Headers': 'Content-Items-Total',
-        'Content-Items-Total': '' + result.total,
+        'Content-Items-Total': '' + result.total
       })
       .json(result);
   }

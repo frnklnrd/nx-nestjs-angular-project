@@ -35,7 +35,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
     const refreshToken = this.extractTokenFromHeader(request);
 
     this.logger.debug('refreshToken', {
-      refreshToken,
+      refreshToken
     });
 
     if (!refreshToken) {
@@ -63,7 +63,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
       this.logger.debug('user', {
         id: user?.id,
         isActive: user?.isActive,
-        isBlocked: user?.isBlocked,
+        isBlocked: user?.isBlocked
       });
 
       if (!user || !user?.isActive || user.isBlocked) {
@@ -73,7 +73,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
       const userTokens = await this.authService.findUserTokensById(payload.sub);
 
       this.logger.debug('refreshToken', {
-        refreshToken: userTokens?.refreshToken,
+        refreshToken: userTokens?.refreshToken
       });
 
       if (!userTokens?.refreshToken) {
@@ -86,7 +86,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
       );
 
       this.logger.debug('refreshTokenMatches:', {
-        refreshTokenMatches,
+        refreshTokenMatches
       });
 
       if (!refreshTokenMatches)

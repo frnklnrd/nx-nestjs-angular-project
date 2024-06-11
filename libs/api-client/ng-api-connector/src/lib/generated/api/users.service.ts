@@ -21,7 +21,7 @@ import {
   HttpHeaders,
   HttpParams,
   HttpResponse,
-  HttpEvent,
+  HttpEvent
 } from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
@@ -138,7 +138,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }
@@ -204,7 +204,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }
@@ -270,7 +270,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }
@@ -342,7 +342,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }
@@ -427,7 +427,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }
@@ -510,7 +510,7 @@ export class UsersApiService {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
-        reportProgress: reportProgress,
+        reportProgress: reportProgress
       }
     );
   }

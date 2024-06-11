@@ -5,11 +5,11 @@ import { UserToken } from './entities/user-token.entity';
 @Module({
   imports: [
     //-------------------------------------
-    TypeOrmModule.forFeature([UserToken]),
+    TypeOrmModule.forFeature([UserToken])
     //-------------------------------------
   ],
   controllers: [],
   providers: [],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule]
 })
 export class ApiCoreAuthModelModule {}

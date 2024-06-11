@@ -8,8 +8,8 @@ import { ApiModule, Configuration } from './generated';
   providers: [
     {
       provide: Configuration,
-      useValue: new Configuration(),
-    },
-  ],
+      useValue: new Configuration()
+    }
+  ]
 })
 export class ApiClientNgApiConnectorModule {}

@@ -8,11 +8,11 @@ import { ApiModuleUsersResourceModule } from '@project/api-module-users-resource
     // Users
     // ----------------------
     ApiModuleUsersModelModule,
-    ApiModuleUsersResourceModule,
+    ApiModuleUsersResourceModule
     // ----------------------
   ],
   controllers: [],
   providers: [],
-  exports: [],
+  exports: []
 })
 export class AppResourcesModule {}

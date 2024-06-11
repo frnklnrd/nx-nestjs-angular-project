@@ -10,18 +10,18 @@ import { ResetPasswordTokenStrategy } from './strategy/reset-pasword-token.strat
   imports: [
     ApiCoreUtilCryptoModule,
     ApiModuleUsersServiceModule,
-    ApiCoreAuthServiceModule,
+    ApiCoreAuthServiceModule
   ],
   controllers: [],
   providers: [
     AccessTokenStrategy,
     RefreshTokenStrategy,
-    ResetPasswordTokenStrategy,
+    ResetPasswordTokenStrategy
   ],
   exports: [
     AccessTokenStrategy,
     RefreshTokenStrategy,
-    ResetPasswordTokenStrategy,
-  ],
+    ResetPasswordTokenStrategy
+  ]
 })
 export class ApiCoreAuthGuardModule {}

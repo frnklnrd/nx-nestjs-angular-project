@@ -6,6 +6,6 @@ import { User } from './entities/user.entity';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [],
   providers: [],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule]
 })
 export class ApiModuleUsersModelModule {}
