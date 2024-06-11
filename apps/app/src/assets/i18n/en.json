@@ -1,0 +1,64 @@
+{
+  "error": {
+    "100": "Continue",
+    "101": "Switching Protocols",
+    "200": "OK",
+    "201": "Created",
+    "202": "Accepted",
+    "204": "No Content",
+    "300": "Multiple Choices",
+    "301": "Moved Permanently",
+    "302": "Found",
+    "304": "Not Modified",
+    "400": "Bad Request",
+    "401": "Unauthorized",
+    "403": "Forbidden",
+    "404": "Not Found",
+    "405": "Method Not Allowed",
+    "406": "Not Acceptable",
+    "500": "Internal Server Error",
+    "501": "Not Implemented",
+    "502": "Bad Gateway",
+    "503": "Service Unavailable",
+    "504": "Gateway Timeout",
+    "505": "HTTP Version Not Supported",
+    "unknown": "Unknown Server Error"
+  },
+  "language": {
+    "ca": {
+      "name": ""
+    },
+    "en": {
+      "name": ""
+    },
+    "es": {
+      "name": ""
+    }
+  },
+  "layout": {
+    "confirm": {
+      "btn": {
+        "no": "",
+        "yes": ""
+      }
+    },
+    "message": {
+      "confirmation": {
+        "errorDetail": "Fill in required fields",
+        "errorHeader": "Error",
+        "paymentEdited": "",
+        "successAddDetail": "Created",
+        "successHeader": "Success",
+        "successUpdateDetail": "Updated"
+      },
+      "information": {
+        "informationHeader": "INFORMATION"
+      }
+    }
+  },
+  "login": {
+    "confirmation": {
+      "successDetail": "Login Successfully!!!"
+    }
+  }
+}
