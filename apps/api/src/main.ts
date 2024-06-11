@@ -103,11 +103,15 @@ async function bootstrap() {
   );
 
   Logger.log(
-    `🚀 Api Docs is accesible on: http://localhost:${port}${apiDocsSwaggerUiUrl}`
+    `🚀 Api Docs in HTML format is accesible on: http://localhost:${port}${apiDocsSwaggerUiUrl}`
   );
 
   Logger.log(
-    `🚀 Api Docs inJSON format is accesible on: http://localhost:${port}${apiDocsSwaggerJsonUrl}`
+    `🚀 Api Docs in JSON format is accesible on: http://localhost:${port}${apiDocsSwaggerJsonUrl}`
+  );
+
+  Logger.log(
+    `🚀 Api Docs in YAML format is accesible on: http://localhost:${port}${apiDocsSwaggerYamlUrl}`
   );
 }
 
