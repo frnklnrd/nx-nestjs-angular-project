@@ -13,5 +13,7 @@ import { Component } from '@angular/core';
   `
 })
 export class ConfirmationComponent {
-  constructor() {}
+  constructor() {
+    //
+  }
 }

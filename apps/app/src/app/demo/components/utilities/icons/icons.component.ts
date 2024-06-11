@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconService } from 'apps/app/src/app/demo/service/icon.service';
+import { IconService } from '../../../service/icon.service';
 
 @Component({
   templateUrl: './icons.component.html'
@@ -22,7 +22,7 @@ export class IconsComponent implements OnInit {
       const icons = data;
       icons.sort((icon1, icon2) => {
         if (icon1.properties.name < icon2.properties.name) return -1;
-        else if (icon1.properties.name < icon2.properties.name) return 1;
+        else if (icon1.properties.name > icon2.properties.name) return 1;
         else return 0;
       });
 

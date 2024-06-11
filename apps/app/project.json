@@ -16,17 +16,23 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/app/src/assets"],
+        "preserveSymlinks": true,
+        "assets": [
+          "apps/app/src/manifest.webmanifest",
+          "apps/app/src/favicon.ico",
+          "apps/app/src/assets"
+        ],
         "styles": ["apps/app/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "serviceWorker": "apps/app/ngsw-config.json"
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "5mb",
+              "maximumError": "10mb"
             },
             {
               "type": "anyComponentStyle",
@@ -34,12 +40,40 @@
               "maximumError": "4kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/app/src/environments/environment.ts",
+              "with": "apps/app/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all"
         },
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "sit": {
+          "fileReplacements": [
+            {
+              "replace": "apps/app/src/environments/environment.ts",
+              "with": "apps/app/src/environments/environment.sit.ts"
+            }
+          ],
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "apps/app/src/environments/environment.ts",
+              "with": "apps/app/src/environments/environment.uat.ts"
+            }
+          ],
+          "outputHashing": "all"
         }
       },
       "defaultConfiguration": "production"
@@ -48,10 +82,20 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "app:build:production"
+          "buildTarget": "app:build:production",
+          "proxyConfig": "proxy.conf.json"
         },
         "development": {
-          "buildTarget": "app:build:development"
+          "buildTarget": "app:build:development",
+          "proxyConfig": "proxy.conf.json"
+        },
+        "sit": {
+          "buildTarget": "app:build:sit",
+          "proxyConfig": "proxy.conf.json"
+        },
+        "uat": {
+          "buildTarget": "app:build:uat",
+          "proxyConfig": "proxy.conf.json"
         }
       },
       "defaultConfiguration": "development"

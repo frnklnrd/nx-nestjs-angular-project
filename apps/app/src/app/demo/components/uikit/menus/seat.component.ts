@@ -13,5 +13,7 @@ import { Component } from '@angular/core';
   `
 })
 export class SeatComponent {
-  constructor() {}
+  constructor() {
+    //
+  }
 }

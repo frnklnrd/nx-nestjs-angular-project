@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'apps/app/src/app/demo/api/product';
-import { PhotoService } from 'apps/app/src/app/demo/service/photo.service';
-import { ProductService } from 'apps/app/src/app/demo/service/product.service';
+import { Product } from '../../../api/product';
+import { ProductService } from '../../../service/product.service';
+import { PhotoService } from '../../../service/photo.service';
 
 @Component({
   templateUrl: './mediademo.component.html'
