@@ -1,0 +1,5 @@
+git_from_branch=develop
+
+git_release_branch=release/0.0.1
+
+code_release_version=0.0.1
