@@ -1,14 +1,14 @@
 {
   "name": "@project/app-core-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@ngxs/store": "^3.8.2",
     "@ngx-translate/core": "^15.0.0",
-    "@project/app-core-util-config": "0.0.1",
-    "@project/app-core-util-loader": "0.0.1",
-    "@project/app-core-util-logger": "0.0.1",
+    "@project/app-core-util-config": "0.0.2",
+    "@project/app-core-util-loader": "0.0.2",
+    "@project/app-core-util-logger": "0.0.2",
     "rxjs": "^7.8.0",
     "@biesbjerg/ngx-translate-extract-marker": "^1.0.0"
   },
