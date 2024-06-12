@@ -15,7 +15,7 @@
  * Do not edit the class manually.
  */
 
-export interface AccessTokenDto {
-  tokenValue: string;
-  expiresIn: number;
+export interface ResetPasswordVerifyInDto {
+  usernameOrEmail: string;
+  verificationCode: string;
 }
