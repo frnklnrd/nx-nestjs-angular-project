@@ -81,7 +81,7 @@ export class AccessTokenStrategy extends PassportStrategy(
         throw new UnauthorizedException('Access Denied');
       }
 
-      const accessTokenMatches = await this.cryptoUtilService.compareTokenData(
+      const accessTokenMatches = await this.cryptoUtilService.compareHashedTokenData(
         accessToken as string,
         userTokens?.accessToken as string
       );
@@ -90,8 +90,9 @@ export class AccessTokenStrategy extends PassportStrategy(
         accessTokenMatches
       });
 
-      if (!accessTokenMatches)
+      if (!accessTokenMatches) {
         throw new UnauthorizedException('Invalid Access Token');
+      }
 
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

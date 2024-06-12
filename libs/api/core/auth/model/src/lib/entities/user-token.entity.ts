@@ -43,6 +43,13 @@ export class UserToken extends BaseResource {
   })
   resetPasswordTokenUpdatedAt?: Date;
 
+  @Column({
+    name: 'reset_password_verification_code',
+    nullable: true
+  })
+  @Exclude()
+  resetPasswordVerificationCode?: string;
+
   // ------------------------------------------------------------------------------
 
   @Column({ name: 'access_failed_attempts', type: 'int', nullable: true })

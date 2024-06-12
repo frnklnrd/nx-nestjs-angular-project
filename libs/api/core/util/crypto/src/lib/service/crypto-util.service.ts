@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AbstractAppService } from '@project/api-core-api';
 import * as argon2 from 'argon2';
 import * as bcrypt from 'bcrypt';
+import * as crypto from 'crypto';
 import { ExtractJwt } from 'passport-jwt';
 
 @Injectable()
@@ -21,7 +22,13 @@ export class CryptoUtilService extends AbstractAppService {
 
   // ---------------------------------------------------------
 
-  async hashPassword(password: string): Promise<string> {
+  async generateShortCode(length: number): Promise<string> {
+    return crypto.randomBytes(length).toString('hex').slice(0, length);
+  }
+
+  // ---------------------------------------------------------
+
+  async encryptPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt();
     const hashedData = Buffer.from(
       await bcrypt.hash(password + this.getEncryptPasswordSecret(), salt)
@@ -31,7 +38,7 @@ export class CryptoUtilService extends AbstractAppService {
 
   // ---------------------------------------------------------
 
-  async comparePassword(
+  async compareEncryptedPassword(
     password: string,
     storedPassword: string
   ): Promise<boolean> {
@@ -56,8 +63,25 @@ export class CryptoUtilService extends AbstractAppService {
 
   // ---------------------------------------------------------
 
-  async compareTokenData(data: string, storedHash: string): Promise<boolean> {
+  async compareHashedTokenData(
+    data: string,
+    storedHash: string
+  ): Promise<boolean> {
     return argon2.verify(Buffer.from(storedHash, 'base64').toString(), data);
+  }
+
+  // ---------------------------------------------------------
+
+  async base64Data(data: string): Promise<string> {
+    const base64Data = Buffer.from(data).toString('base64');
+    return base64Data;
+  }
+
+  // ---------------------------------------------------------
+
+  async compareBase64Data(data: string, storedHash: string): Promise<boolean> {
+    // return Buffer.from(storedHash, 'base64').toString() === data;
+    return Buffer.from(data).toString('base64') === storedHash;
   }
 
   // ---------------------------------------------------------

@@ -32,7 +32,7 @@ export class UsersService {
     return this.usersRepository.save({
       ...user,
       isAdmin: false,
-      password: await this.cryptoUtilService.hashPassword(
+      password: await this.cryptoUtilService.encryptPassword(
         createUserDto.password as string
       )
     });
@@ -60,7 +60,7 @@ export class UsersService {
   async updatePassword(userId: string, newPassword: string): Promise<User> {
     return this.usersRepository.save({
       id: userId,
-      password: await this.cryptoUtilService.hashPassword(newPassword as string)
+      password: await this.cryptoUtilService.encryptPassword(newPassword as string)
     });
   }
 
