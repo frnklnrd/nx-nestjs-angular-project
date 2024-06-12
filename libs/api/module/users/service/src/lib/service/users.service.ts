@@ -60,7 +60,9 @@ export class UsersService {
   async updatePassword(userId: string, newPassword: string): Promise<User> {
     return this.usersRepository.save({
       id: userId,
-      password: await this.cryptoUtilService.encryptPassword(newPassword as string)
+      password: await this.cryptoUtilService.encryptPassword(
+        newPassword as string
+      )
     });
   }
 

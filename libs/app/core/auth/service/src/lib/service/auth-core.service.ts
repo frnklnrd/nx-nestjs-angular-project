@@ -6,9 +6,9 @@ import {
   ResetPasswordConfirmResultDto,
   ResetPasswordRequestInDto,
   ResetPasswordRequestResultDto,
+  ResetPasswordVerifyResultDto,
   SignInDto
 } from '@project/api-client-ng-api-connector';
-import { ResetPasswordVerifyResultDto } from '@project/api-core-auth-model';
 import { AbstractService } from '@project/app-core-api';
 import {
   AuthLoginOkStoreAction,

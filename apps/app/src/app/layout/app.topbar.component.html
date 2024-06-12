@@ -50,51 +50,50 @@
     </button>
   -->
 
-  <p-menubar [model]="menu1Items" [className]="'menubar'">
-    <ng-template pTemplate="start">
-    </ng-template>
+    <p-menubar [model]="menu1Items" [className]="'menubar'">
+      <ng-template pTemplate="start"> </ng-template>
 
-    <ng-template pTemplate="item" let-item let-root="root">
-      <a pRipple class="flex align-items-center p-menuitem-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-        <p-badge
-          *ngIf="item.badge"
-          [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
-          [value]="item.badge"
-        />
-        <span
-          *ngIf="item.shortcut"
-          class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
-          >{{ item.shortcut }}</span
-        >
-        <i
-          *ngIf="item.items"
-          [ngClass]="[
-            'pi',
-            root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto'
-          ]"
-        ></i>
-      </a>
-    </ng-template>
-
-    <ng-template pTemplate="end">
-      <div class="flex align-items-center gap-2 ml-2">
-        <span class="p-input-icon-right">
-          <input
-            type="text"
-            pInputText
-            placeholder="Search"
-            class="w-8rem sm:w-auto"
+      <ng-template pTemplate="item" let-item let-root="root">
+        <a pRipple class="flex align-items-center p-menuitem-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+          <p-badge
+            *ngIf="item.badge"
+            [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
+            [value]="item.badge"
           />
-          <i class="pi pi-search"></i>
-        </span>
-        <p-avatar
-        [image]="'assets/images/user-profile/user-no-photo.png'"
-          shape="circle"
-        />
-      </div>
-    </ng-template>
-  </p-menubar>
+          <span
+            *ngIf="item.shortcut"
+            class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+            >{{ item.shortcut }}</span
+          >
+          <i
+            *ngIf="item.items"
+            [ngClass]="[
+              'pi',
+              root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto'
+            ]"
+          ></i>
+        </a>
+      </ng-template>
+
+      <ng-template pTemplate="end">
+        <div class="flex align-items-center gap-2 ml-2">
+          <span class="p-input-icon-right">
+            <input
+              type="text"
+              pInputText
+              placeholder="Search"
+              class="w-8rem sm:w-auto"
+            />
+            <i class="pi pi-search"></i>
+          </span>
+          <p-avatar
+            [image]="'assets/images/user-profile/user-no-photo.png'"
+            shape="circle"
+          />
+        </div>
+      </ng-template>
+    </p-menubar>
   </div>
 </div>

@@ -81,10 +81,11 @@ export class AccessTokenStrategy extends PassportStrategy(
         throw new UnauthorizedException('Access Denied');
       }
 
-      const accessTokenMatches = await this.cryptoUtilService.compareHashedTokenData(
-        accessToken as string,
-        userTokens?.accessToken as string
-      );
+      const accessTokenMatches =
+        await this.cryptoUtilService.compareHashedTokenData(
+          accessToken as string,
+          userTokens?.accessToken as string
+        );
 
       this.logger.debug('accessTokenMatches:', {
         accessTokenMatches
