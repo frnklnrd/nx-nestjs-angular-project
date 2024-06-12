@@ -87,7 +87,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
       */
 
       const userTokens = await this.authService.findUserTokensById(
-        payload.username
+        user?.id as string
       );
 
       this.logger.debug('resetPasswordToken', {
@@ -99,7 +99,7 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
       }
 
       const resetPasswordTokenMatches =
-        await this.cryptoUtilService.compareTokenData(
+        await this.cryptoUtilService.compareBase64Data(
           resetPasswordToken as string,
           userTokens?.resetPasswordToken as string
         );
@@ -108,8 +108,9 @@ export class ResetPasswordTokenStrategy extends PassportStrategy(
         resetPasswordTokenMatches
       });
 
-      if (!resetPasswordTokenMatches)
+      if (!resetPasswordTokenMatches) {
         throw new UnauthorizedException('Invalid Reset Password Token');
+      }
 
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

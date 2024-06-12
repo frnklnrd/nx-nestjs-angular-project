@@ -143,6 +143,35 @@
         "tags": ["auth"]
       }
     },
+    "/auth/reset-password/verify": {
+      "post": {
+        "operationId": "resetPasswordVerify",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordVerifyInDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verify to reset password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordVerifyResultDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["auth"]
+      }
+    },
     "/auth/reset-password/confirm": {
       "post": {
         "operationId": "resetPasswordConfirm",
@@ -163,7 +192,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResetPasswordRequestResultDto"
+                  "$ref": "#/components/schemas/ResetPasswordConfirmResultDto"
                 }
               }
             }
@@ -308,8 +337,8 @@
   },
   "info": {
     "title": "API Documentation",
-    "description": "API Description",
-    "version": "0.0.1",
+    "description": "API Description.<br/><br/>Download the api docs file in JSON format <a target=\"_blank\" href=\"/api/docs/swagger.json\">here</a>.<br/><br/>Download the api docs file in YAML format <a target=\"_blank\" href=\"/api/docs/swagger.yaml\">here</a>.",
+    "version": "0.0.2",
     "contact": {}
   },
   "tags": [],
@@ -389,6 +418,19 @@
         "properties": { "tokenSend": { "type": "boolean" } },
         "required": ["tokenSend"]
       },
+      "ResetPasswordVerifyInDto": {
+        "type": "object",
+        "properties": {
+          "usernameOrEmail": { "type": "string" },
+          "verificationCode": { "type": "string" }
+        },
+        "required": ["usernameOrEmail", "verificationCode"]
+      },
+      "ResetPasswordVerifyResultDto": {
+        "type": "object",
+        "properties": { "resetPasswordToken": { "type": "string" } },
+        "required": ["resetPasswordToken"]
+      },
       "ResetPasswordConfirmInDto": {
         "type": "object",
         "properties": {
@@ -396,6 +438,11 @@
           "newPassword": { "type": "string" }
         },
         "required": ["usernameOrEmail", "newPassword"]
+      },
+      "ResetPasswordConfirmResultDto": {
+        "type": "object",
+        "properties": { "passwordChanged": { "type": "boolean" } },
+        "required": ["passwordChanged"]
       },
       "CreateUserInDto": {
         "type": "object",
@@ -471,7 +518,7 @@
     }
   },
   "externalDocs": {
-    "description": "Open Api Specification file",
-    "url": "/api/docs/swagger.json"
+    "description": "Open Api Specification",
+    "url": "https://swagger.io/specification/"
   }
 }

@@ -47,7 +47,7 @@
             <input
               id="username1"
               type="text"
-              placeholder="Email address"
+              placeholder="Username or Email address"
               pInputText
               class="w-full md:w-30rem mb-5"
               style="padding: 1rem"
@@ -61,7 +61,6 @@
             >
             <p-password
               id="password1"
-              [(ngModel)]="password"
               placeholder="Password"
               [toggleMask]="true"
               styleClass="mb-5"
@@ -83,6 +82,7 @@
               <a
                 class="font-medium no-underline ml-2 text-right cursor-pointer"
                 style="color: var(--primary-color)"
+                (click)="onClickForgotPassword()"
                 >Forgot password?</a
               >
             </div>

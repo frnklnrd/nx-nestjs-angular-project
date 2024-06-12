@@ -80,17 +80,19 @@ export class RefreshTokenStrategy extends PassportStrategy(
         throw new UnauthorizedException('Access Denied');
       }
 
-      const refreshTokenMatches = await this.cryptoUtilService.compareTokenData(
-        refreshToken as string,
-        userTokens?.refreshToken as string
-      );
+      const refreshTokenMatches =
+        await this.cryptoUtilService.compareHashedTokenData(
+          refreshToken as string,
+          userTokens?.refreshToken as string
+        );
 
       this.logger.debug('refreshTokenMatches:', {
         refreshTokenMatches
       });
 
-      if (!refreshTokenMatches)
+      if (!refreshTokenMatches) {
         throw new UnauthorizedException('Invalid Refresh Token');
+      }
 
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

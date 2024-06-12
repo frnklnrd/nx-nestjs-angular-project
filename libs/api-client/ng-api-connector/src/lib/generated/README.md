@@ -1,9 +1,8 @@
-## @project/api-client-ng-api-connector@1.0.0-SNAPSHOT.202406102032
+## @project/api-client-ng-api-connector@1.0.0-SNAPSHOT.202406121703
 
 ### Building
 
 To install the required dependencies and to build the typescript sources run:
-
 ```
 npm install
 npm run build
@@ -11,7 +10,7 @@ npm run build
 
 ### publishing
 
-First build the package than run `npm publish dist` (don't forget to specify the `dist` folder!)
+First build the package than run ```npm publish dist``` (don't forget to specify the `dist` folder!)
 
 ### consuming
 
@@ -20,7 +19,7 @@ Navigate to the folder of your consuming project and run one of next commands.
 _published:_
 
 ```
-npm install @project/api-client-ng-api-connector@1.0.0-SNAPSHOT.202406102032 --save
+npm install @project/api-client-ng-api-connector@1.0.0-SNAPSHOT.202406121703 --save
 ```
 
 _without publishing (not recommended):_
@@ -29,29 +28,29 @@ _without publishing (not recommended):_
 npm install PATH_TO_GENERATED_PACKAGE/dist.tgz --save
 ```
 
-It's important to take the tgz file, otherwise you'll get trouble with links on windows.
+It's important to take the tgz file, otherwise you'll get trouble with links on windows.  
 
 _using `npm link`:_
 
 In PATH_TO_GENERATED_PACKAGE/dist:
-
 ```
 npm link
 ```
 
 In your project:
-
 ```
 npm link @project/api-client-ng-api-connector
 ```
 
-**Note for Windows users:** The Angular CLI has troubles to use linked npm packages.
+__Note for Windows users:__ The Angular CLI has troubles to use linked npm packages.
 Please refer to this issue https://github.com/angular/angular-cli/issues/8284 for a solution / workaround.
 Published packages are not effected by this issue.
+
 
 #### General usage
 
 In your Angular project:
+
 
 ```
 // without configuring providers
@@ -105,11 +104,9 @@ Note: The ApiModule is restricted to being instantiated once app wide.
 This is to ensure that all services are treated as singletons.
 
 #### Using multiple swagger files / APIs / ApiModules
-
 In order to use multiple `ApiModules` generated from different swagger files,
 you can create an alias name when importing the modules
 in order to avoid naming conflicts:
-
 ```
 import { ApiModule } from 'my-api-path';
 import { ApiModule as OtherApiModule } from 'my-other-api-path';
@@ -130,9 +127,9 @@ export class AppModule {
 }
 ```
 
-### Set service base path
 
-If different than the generated base path, during app bootstrap, you can provide the base path to your service.
+### Set service base path
+If different than the generated base path, during app bootstrap, you can provide the base path to your service. 
 
 ```
 import { BASE_PATH } from '@project/api-client-ng-api-connector';
@@ -141,7 +138,6 @@ bootstrap(AppComponent, [
     { provide: BASE_PATH, useValue: 'https://your-web-service.com' },
 ]);
 ```
-
 or
 
 ```
@@ -156,8 +152,8 @@ import { BASE_PATH } from '@project/api-client-ng-api-connector';
 export class AppModule {}
 ```
 
-#### Using @angular/cli
 
+#### Using @angular/cli
 First extend your `src/environments/*.ts` files by adding the corresponding base path:
 
 ```
@@ -168,7 +164,6 @@ export const environment = {
 ```
 
 In the src/app/app.module.ts:
-
 ```
 import { BASE_PATH } from '@project/api-client-ng-api-connector';
 import { environment } from '../environments/environment';
@@ -182,4 +177,4 @@ import { environment } from '../environments/environment';
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
-```
+```  

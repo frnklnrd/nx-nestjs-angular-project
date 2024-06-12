@@ -5,8 +5,11 @@ export const APP_ROUTES_CONFIG = {
 
   // ----------------------------------------------------------------
 
-  LOGIN: '/auth/login',
-  LOGOUT: '/auth/logout',
+  AUTH_LOGIN: '/auth/login',
+  AUTH_LOGOUT: '/auth/logout',
+
+  AUTH_RESET_PASSWORD_REQUEST: '/auth/reset-password/request',
+  AUTH_RESET_PASSWORD_CONFIRM: '/auth/reset-password/confirm',
 
   // ----------------------------------------------------------------
 

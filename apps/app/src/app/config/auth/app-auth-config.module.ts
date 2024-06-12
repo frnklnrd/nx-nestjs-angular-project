@@ -100,7 +100,7 @@ export class AppAuthConfigModule {
       .subscribe((action: AuthLogoutOkStoreAction) => {
         if (action.loggedOut) {
           this.logger.console.debug('Logged -> Out !!!', action.loggedOut);
-          this.router.navigate([APP_ROUTES_CONFIG.LOGIN]);
+          this.router.navigate([APP_ROUTES_CONFIG.AUTH_LOGIN]);
         }
       });
 
@@ -130,7 +130,7 @@ export class AppAuthConfigModule {
         this.logger.console.debug('Verifying if user is logged', isLogged);
 
         if (!isLogged) {
-          if (this.router.url !== APP_ROUTES_CONFIG.LOGIN) {
+          if (this.router.url !== APP_ROUTES_CONFIG.AUTH_LOGIN) {
             this.notifyCheckingAuthTokenValidEnd();
             // this.auth.dispatchLogoutOk();
           }

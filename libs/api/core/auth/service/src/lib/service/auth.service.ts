@@ -12,6 +12,7 @@ import {
   ChangePasswordResultDto,
   ResetPasswordConfirmResultDto,
   ResetPasswordRequestResultDto,
+  ResetPasswordVerifyResultDto,
   UserToken
 } from '@project/api-core-auth-model';
 import { CryptoUtilService } from '@project/api-core-util-crypto';
@@ -36,10 +37,21 @@ export class AuthService extends AbstractAppService {
     super();
   }
 
-  async signIn(username: string, pass: string): Promise<AuthTokensResultDto> {
+  async signIn(
+    usernameOrEmail: string,
+    pass: string
+  ): Promise<AuthTokensResultDto> {
     this.logger.debug('signIn - init');
 
-    const user = await this.usersService.findByUsername(username);
+    let user = null;
+
+    if (usernameOrEmail) {
+      user = await this.usersService.findByUsername(usernameOrEmail);
+    }
+
+    if (!user && usernameOrEmail) {
+      user = await this.usersService.findByEmail(usernameOrEmail);
+    }
 
     if (!user) {
       this.logger.error('User not found');
@@ -55,10 +67,11 @@ export class AuthService extends AbstractAppService {
       id: user.id
     });
 
-    const passwordMatches = await this.cryptoUtilService.comparePassword(
-      pass,
-      user.password as string
-    );
+    const passwordMatches =
+      await this.cryptoUtilService.compareEncryptedPassword(
+        pass,
+        user.password as string
+      );
 
     if (!passwordMatches) {
       this.logger.error('Incorrect password');
@@ -157,13 +170,15 @@ export class AuthService extends AbstractAppService {
       throw new ForbiddenException('Access Denied');
     }
 
-    const refreshTokenMatches = await this.cryptoUtilService.compareTokenData(
-      refreshToken as string,
-      userTokens?.refreshToken as string
-    );
+    const refreshTokenMatches =
+      await this.cryptoUtilService.compareHashedTokenData(
+        refreshToken as string,
+        userTokens?.refreshToken as string
+      );
 
-    if (!refreshTokenMatches)
+    if (!refreshTokenMatches) {
       throw new ForbiddenException('Invalid Refresh Token');
+    }
 
     const payload = {
       sub: user.id as string,
@@ -232,10 +247,11 @@ export class AuthService extends AbstractAppService {
       id: user.id
     });
 
-    const passwordMatches = await this.cryptoUtilService.comparePassword(
-      currentPassword,
-      user.password as string
-    );
+    const passwordMatches =
+      await this.cryptoUtilService.compareEncryptedPassword(
+        currentPassword,
+        user.password as string
+      );
 
     if (!passwordMatches) {
       this.logger.error('Passwords not matches');
@@ -349,6 +365,7 @@ export class AuthService extends AbstractAppService {
     await this.updateResetPasswordToken(
       user.id as string,
       tokens.resetPasswordToken,
+      tokens.verificationCode,
       true
     );
 
@@ -360,6 +377,60 @@ export class AuthService extends AbstractAppService {
 
     return {
       tokenSend: true
+    };
+  }
+
+  async resetPasswordVerify(
+    usernameOrEmail: string,
+    verificationCode: string
+  ): Promise<ResetPasswordVerifyResultDto> {
+    this.logger.debug('resetPasswordVerify - init');
+
+    let user = null;
+
+    if (usernameOrEmail) {
+      user = await this.usersService.findByUsername(usernameOrEmail);
+    }
+
+    if (!user && usernameOrEmail) {
+      user = await this.usersService.findByEmail(usernameOrEmail);
+    }
+
+    if (!user) {
+      this.logger.error('User not found');
+      throw new BadRequestException('User not found');
+    }
+
+    if (!user.isActive || user.isBlocked) {
+      this.logger.error('User inactive or blocked');
+      throw new UnauthorizedException('User inactive or blocked');
+    }
+
+    const userTokensInfo = await this.userTokensRepository.findOneBy({
+      id: user.id
+    });
+
+    const verificationCodeMatches =
+      await this.cryptoUtilService.compareBase64Data(
+        verificationCode as string,
+        userTokensInfo?.resetPasswordVerificationCode as string
+      );
+
+    this.logger.debug('verificationCodeMatches:', {
+      verificationCodeMatches
+    });
+
+    if (!verificationCodeMatches) {
+      throw new UnauthorizedException('Invalid Verification Code');
+    }
+
+    this.logger.debug('resetPasswordVerify - end');
+
+    return {
+      resetPasswordToken: Buffer.from(
+        userTokensInfo?.resetPasswordToken as string,
+        'base64'
+      ).toString()
     };
   }
 
@@ -398,9 +469,11 @@ export class AuthService extends AbstractAppService {
     }
     */
 
+    /*
     const userTokensInfo = await this.userTokensRepository.findOneBy({
       id: user.id
     });
+    */
 
     await this.userTokensRepository.save({
       id: user.id,
@@ -414,7 +487,7 @@ export class AuthService extends AbstractAppService {
       //-------------------------------------
     });
 
-    await this.updateResetPasswordToken(user.id as string, null, false);
+    await this.updateResetPasswordToken(user.id as string, null, null, false);
 
     await this.usersService.updatePassword(user.id as string, newPassword);
 
@@ -451,8 +524,11 @@ export class AuthService extends AbstractAppService {
     const resetPasswordToken =
       await this.cryptoUtilService.signAsyncWithResetPasswordConfig(payload);
 
+    const verificationCode = await this.cryptoUtilService.generateShortCode(8);
+
     return {
-      resetPasswordToken
+      resetPasswordToken,
+      verificationCode
     };
   }
 
@@ -495,13 +571,17 @@ export class AuthService extends AbstractAppService {
   private async updateResetPasswordToken(
     id: string,
     resetPasswordToken: string | null,
+    resetPasswordVerificationCode: string | null,
     hashToken: boolean
   ): Promise<UserToken> {
     return this.userTokensRepository.save({
       id,
       resetPasswordToken: (hashToken && resetPasswordToken
-        ? await this.cryptoUtilService.hashTokenData(
-            resetPasswordToken as string
+        ? await this.cryptoUtilService.base64Data(resetPasswordToken as string)
+        : null) as string,
+      resetPasswordVerificationCode: (hashToken && resetPasswordVerificationCode
+        ? await this.cryptoUtilService.base64Data(
+            resetPasswordVerificationCode as string
           )
         : null) as string,
       resetPasswordTokenUpdatedAt: new Date()

@@ -34,6 +34,8 @@ import {
   ResetPasswordConfirmResultDto,
   ResetPasswordRequestInDto,
   ResetPasswordRequestResultDto,
+  ResetPasswordVerifyInDto,
+  ResetPasswordVerifyResultDto,
   SignInDto
 } from '@project/api-core-auth-model';
 import { AuthService } from '@project/api-core-auth-service';
@@ -183,8 +185,31 @@ export class AuthController extends AbstractAppController {
   @ApiProduces('application/json')
   @ApiResponse({
     status: HttpStatus.OK,
+    description: 'Verify to reset password',
+    type: ResetPasswordVerifyResultDto
+    // isArray: true,
+  })
+  @SkipAccessTokenGuard()
+  @Post('reset-password/verify')
+  async resetPasswordVerify(
+    @Request() req: any,
+    @Body() resetPasswordVerifyInDto: ResetPasswordVerifyInDto
+  ): Promise<ResponseDataWrapperDto<ResetPasswordVerifyResultDto>> {
+    this.logger.debug('resetPasswordVerifyInDto', resetPasswordVerifyInDto);
+
+    return new ResponseDataWrapperDto<ResetPasswordVerifyResultDto>(
+      await this.authService.resetPasswordVerify(
+        resetPasswordVerifyInDto.usernameOrEmail as string,
+        resetPasswordVerifyInDto.verificationCode as string
+      )
+    );
+  }
+
+  @ApiProduces('application/json')
+  @ApiResponse({
+    status: HttpStatus.OK,
     description: 'Reset password',
-    type: ResetPasswordRequestResultDto
+    type: ResetPasswordConfirmResultDto
     // isArray: true,
   })
   @SkipAccessTokenGuard()
@@ -197,7 +222,9 @@ export class AuthController extends AbstractAppController {
   ): Promise<ResponseDataWrapperDto<ResetPasswordConfirmResultDto>> {
     this.logger.debug('resetPasswordConfirm', resetPasswordConfirmInDto);
 
-    if (resetPasswordConfirmInDto.usernameOrEmail !== req.user.sub) {
+    this.logger.debug('req.user', req.user);
+
+    if (resetPasswordConfirmInDto.usernameOrEmail !== req.user.username) {
       this.logger.error('User not allowed to change password');
       throw new BadRequestException('User not allowed to change password');
     }

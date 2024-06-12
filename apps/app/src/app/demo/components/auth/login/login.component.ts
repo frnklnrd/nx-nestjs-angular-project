@@ -5,11 +5,10 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { AuthCoreService } from '@project/app-core-auth-service';
-import { AbstractAppFeatureComponent } from '@project/app-module-api-feature';
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { marker as _i18n } from '@biesbjerg/ngx-translate-extract-marker';
+import { AuthCoreService } from '@project/app-core-auth-service';
 import { AuthStoreState } from '@project/app-core-auth-store';
+import { AbstractAppFeatureComponent } from '@project/app-module-api-feature';
 import { take } from 'rxjs';
 import { LayoutService } from '../../../../layout/service/app.layout.service';
 
@@ -35,10 +34,6 @@ export class LoginComponent
     inject<AuthCoreService>(AuthCoreService);
 
   protected loginForm: FormGroup;
-
-  valCheck: string[] = ['remember'];
-
-  password!: string;
 
   constructor(public layoutService: LayoutService, protected fb: FormBuilder) {
     super();
@@ -72,6 +67,7 @@ export class LoginComponent
     }
 
     this.loader.start('login');
+
     this.addSubscription(
       this.authService
         .login(this.loginForm.getRawValue())
@@ -94,11 +90,17 @@ export class LoginComponent
 
               setTimeout(() => {
                 this.authService.dispatchLoginOk();
-              }, 200);
+              }, 0);
             }
           },
           error: (error) => this.handleError(error)
         })
     );
+  }
+
+  protected onClickForgotPassword(): void {
+    this.router.navigate([
+      this.configService.getAppRoute('AUTH_RESET_PASSWORD_REQUEST')
+    ]);
   }
 }
