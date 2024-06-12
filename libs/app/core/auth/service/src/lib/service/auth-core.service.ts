@@ -3,8 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import {
   AuthApiService,
   AuthTokensResultDto,
+  ResetPasswordConfirmResultDto,
+  ResetPasswordRequestInDto,
+  ResetPasswordRequestResultDto,
   SignInDto
 } from '@project/api-client-ng-api-connector';
+import { ResetPasswordVerifyResultDto } from '@project/api-core-auth-model';
 import { AbstractService } from '@project/app-core-api';
 import {
   AuthLoginOkStoreAction,
@@ -16,7 +20,7 @@ import {
 } from '@project/app-core-auth-store';
 import { Buffer } from 'buffer';
 import { Observable, catchError, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthCoreService extends AbstractService {
@@ -173,6 +177,88 @@ export class AuthCoreService extends AbstractService {
     this.store.dispatch(new AuthLogoutOkStoreAction(true));
   }
 
+  // -------------------------------------------------------
+
+  public resetPasswordRequest(
+    body: ResetPasswordRequestInDto
+  ): Observable<boolean> {
+    const resetPasswordRequestToken: string | null = null;
+
+    this.authApiService.configuration.accessToken =
+      resetPasswordRequestToken as any;
+
+    return this.authApiService.resetPasswordRequest(body).pipe(
+      map((response: any) => response.data as ResetPasswordRequestResultDto),
+      map((data: ResetPasswordRequestResultDto) => {
+        this.logger.console.log('reset password request OK', data);
+        this.store.dispatch(
+          new AuthRefreshTokensDataAction({
+            accessToken: null,
+            refreshToken: null
+          })
+        );
+        return !!data.tokenSend;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  public dispatchResetPasswordRequestOk(): void {
+    //
+  }
+
+  // -------------------------------------------------------
+
+  public resetPasswordConfirm(body: {
+    usernameOrEmail: string;
+    verificationCode: string;
+    newPassword: string;
+  }): Observable<boolean> {
+    let resetPasswordConfirmToken: string | null = null;
+
+    this.authApiService.configuration.accessToken =
+      resetPasswordConfirmToken as any;
+
+    return this.authApiService
+      .resetPasswordVerify({
+        usernameOrEmail: body.usernameOrEmail,
+        verificationCode: body.verificationCode
+      })
+      .pipe(
+        map((response: any) => response.data as ResetPasswordVerifyResultDto),
+        switchMap((data: ResetPasswordVerifyResultDto) => {
+          this.logger.console.log('reset password verify OK', data);
+
+          resetPasswordConfirmToken = data.resetPasswordToken as string;
+
+          this.authApiService.configuration.accessToken =
+            resetPasswordConfirmToken as any;
+
+          return this.authApiService.resetPasswordConfirm({
+            usernameOrEmail: body.usernameOrEmail,
+            newPassword: body.newPassword
+          });
+        }),
+        map((response: any) => response.data as ResetPasswordConfirmResultDto),
+        map((data: ResetPasswordConfirmResultDto) => {
+          this.logger.console.log('reset password confirm OK', data);
+
+          this.store.dispatch(
+            new AuthRefreshTokensDataAction({
+              accessToken: null,
+              refreshToken: null
+            })
+          );
+
+          return true;
+        }),
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  public dispatchResetPasswordConfirmOk(): void {
+    //
+  }
   // -------------------------------------------------------
 
   public check(data?: any): Observable<boolean> {

@@ -7,14 +7,13 @@ import {
 } from '@angular/forms';
 import { marker as _i18n } from '@biesbjerg/ngx-translate-extract-marker';
 import { AuthCoreService } from '@project/app-core-auth-service';
-import { AuthStoreState } from '@project/app-core-auth-store';
 import { AbstractAppFeatureComponent } from '@project/app-module-api-feature';
 import { take } from 'rxjs';
-import { LayoutService } from '../../../../layout/service/app.layout.service';
+import { LayoutService } from '../../../../../layout/service/app.layout.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-reset-password-request',
+  templateUrl: './reset-password-request.component.html',
   styles: [
     `
       :host ::ng-deep .pi-eye,
@@ -26,34 +25,23 @@ import { LayoutService } from '../../../../layout/service/app.layout.service';
     `
   ]
 })
-export class LoginComponent
+export class ResetPasswordRequestComponent
   extends AbstractAppFeatureComponent
   implements OnInit
 {
   protected authService: AuthCoreService =
     inject<AuthCoreService>(AuthCoreService);
 
-  protected loginForm: FormGroup;
+  protected resetPasswordRequestForm: FormGroup;
 
   constructor(public layoutService: LayoutService, protected fb: FormBuilder) {
     super();
-    this.loginForm = this.fb.group({
-      username: new FormControl(
+    this.resetPasswordRequestForm = this.fb.group({
+      usernameOrEmail: new FormControl(
         { value: null, disabled: false },
-        Validators.compose([Validators.required])
-      ),
-      password: new FormControl(
-        { value: null, disabled: false },
-        Validators.compose([Validators.required])
-      ),
-      remember: new FormControl({ value: false, disabled: false })
+        Validators.compose([Validators.required, Validators.email])
+      )
     });
-
-    const isLogged = this.store.selectSnapshot(AuthStoreState.getIsLogged);
-
-    if (isLogged) {
-      this.router.navigate([this.configService.getAppRoute('APP_DASHBOARD')]);
-    }
   }
 
   override ngOnInit(): void {
@@ -61,21 +49,21 @@ export class LoginComponent
     this.loader.clear();
   }
 
-  protected onClickSignIn(): void {
-    if (!this.loginForm.valid) {
+  protected onClickRequestResetPassword(): void {
+    if (!this.resetPasswordRequestForm.valid) {
       return;
     }
 
-    this.loader.start('login');
+    this.loader.start('reset-password-request');
 
     this.addSubscription(
       this.authService
-        .login(this.loginForm.getRawValue())
+        .resetPasswordRequest(this.resetPasswordRequestForm.getRawValue())
         .pipe(take(1))
         .subscribe({
           next: (data: boolean) => {
             if (data) {
-              this.loader.stop('login');
+              this.loader.stop('reset-password-request');
 
               this.messageService.add({
                 key: 'app-layout-message-box',
@@ -84,12 +72,14 @@ export class LoginComponent
                   _i18n('layout.message.confirmation.successHeader')
                 ),
                 detail: this.translate.instant(
-                  _i18n('login.confirmation.successDetail')
+                  _i18n('reset-password.confirmation.requestSuccessDetail')
                 )
               });
 
               setTimeout(() => {
-                this.authService.dispatchLoginOk();
+                this.router.navigate([
+                  this.configService.getAppRoute('AUTH_RESET_PASSWORD_CONFIRM')
+                ]);
               }, 0);
             }
           },
@@ -98,9 +88,7 @@ export class LoginComponent
     );
   }
 
-  protected onClickForgotPassword(): void {
-    this.router.navigate([
-      this.configService.getAppRoute('AUTH_RESET_PASSWORD_REQUEST')
-    ]);
+  protected onClickReturnToLogin(): void {
+    this.router.navigate([this.configService.getAppRoute('AUTH_LOGIN')]);
   }
 }
