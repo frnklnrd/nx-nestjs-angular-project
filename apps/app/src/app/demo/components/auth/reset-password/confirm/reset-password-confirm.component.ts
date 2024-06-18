@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -75,6 +76,16 @@ export class ResetPasswordConfirmComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.loader.clear();
+    this.addSubscription(
+      this.route.queryParams.pipe(take(1)).subscribe((params: any) => {
+        this.resetPasswordConfirmForm.controls['usernameOrEmail'].setValue(
+          params?.email
+        );
+        this.resetPasswordConfirmForm.controls['verificationCode'].setValue(
+          params?.code
+        );
+      })
+    );
   }
 
   protected onClickConfirmResetPassword(): void {

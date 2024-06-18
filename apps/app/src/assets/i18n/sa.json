@@ -31,5 +31,11 @@
     "confirmation": {
       "successDetail": ""
     }
+  },
+  "reset-password": {
+    "confirmation": {
+      "confirmSuccessDetail": "",
+      "requestSuccessDetail": ""
+    }
   }
 }

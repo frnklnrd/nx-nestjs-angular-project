@@ -26,27 +26,26 @@
   },
   "language": {
     "ca": {
-      "name": ""
+      "name": "Català"
     },
     "en": {
-      "name": ""
+      "name": "Anglès"
     },
     "es": {
-      "name": ""
+      "name": "Castellà"
     }
   },
   "layout": {
     "confirm": {
       "btn": {
-        "no": "",
-        "yes": ""
+        "no": "No",
+        "yes": "Si"
       }
     },
     "message": {
       "confirmation": {
         "errorDetail": "Ompliu els camps requerits",
         "errorHeader": "Error",
-        "paymentEdited": "",
         "successAddDetail": "Creat",
         "successHeader": "Èxit",
         "successUpdateDetail": "Actualitzat"
@@ -59,6 +58,12 @@
   "login": {
     "confirmation": {
       "successDetail": "Acceso amb éxito!!!"
+    }
+  },
+  "reset-password": {
+    "confirmation": {
+      "confirmSuccessDetail": "Contrasenya Actualitzada Correctament.",
+      "requestSuccessDetail": "Reviseu el vostre correu per seguir les indicacions de Recuperació de Contrasenya."
     }
   }
 }
