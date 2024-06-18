@@ -46,7 +46,6 @@
       "confirmation": {
         "errorDetail": "Complete los campos requeridos",
         "errorHeader": "Error",
-        "paymentEdited": "",
         "successAddDetail": "Creado",
         "successHeader": "Correcto",
         "successUpdateDetail": "Actualizado"
@@ -59,6 +58,12 @@
   "login": {
     "confirmation": {
       "successDetail": "Acceso Exitoso!!!"
+    }
+  },
+  "reset-password": {
+    "confirmation": {
+      "confirmSuccessDetail": "Contraseña Actualizada Correctamente.",
+      "requestSuccessDetail": "Revise su correo para seguir las indicaciones de Recuperación de Contraseña. "
     }
   }
 }

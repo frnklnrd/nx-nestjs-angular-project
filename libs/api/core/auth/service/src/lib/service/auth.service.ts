@@ -16,6 +16,7 @@ import {
   UserToken
 } from '@project/api-core-auth-model';
 import { CryptoUtilService } from '@project/api-core-util-crypto';
+import { MailerUtilService } from '@project/api-core-util-mailer';
 import { UserOutDto } from '@project/api-module-users-model';
 import { UsersService } from '@project/api-module-users-service';
 import { plainToClass } from 'class-transformer';
@@ -28,11 +29,12 @@ export class AuthService extends AbstractAppService {
   }
 
   constructor(
-    protected readonly usersService: UsersService,
-    protected readonly cryptoUtilService: CryptoUtilService,
     @InjectRepository(UserToken)
     protected readonly userTokensRepository: Repository<UserToken>,
-    protected readonly configService: ConfigService
+    protected readonly configService: ConfigService,
+    protected readonly cryptoUtilService: CryptoUtilService,
+    protected readonly mailerUtilService: MailerUtilService,
+    protected readonly usersService: UsersService
   ) {
     super();
   }
@@ -369,9 +371,23 @@ export class AuthService extends AbstractAppService {
       true
     );
 
-    // TODO send a notification by email
-
     this.logger.debug('tokens', { tokens });
+
+    await this.mailerUtilService.sendEmail({
+      to: user.email as string,
+      subject: 'Password Reset Confirmation.',
+      useTemplate: true,
+      templateName: './mail/reset-password/send-verification-code',
+      templateContext: {
+        name: user.username,
+        verificationCode: tokens.verificationCode,
+        resetPasswordConfirmUrl: `${
+          this.configService.get<string>(
+            'security.reset_password.confirm.app_url'
+          ) as string
+        }?email=${user.email}&code=${tokens.verificationCode}`
+      }
+    });
 
     this.logger.debug('resetPasswordRequest - end');
 

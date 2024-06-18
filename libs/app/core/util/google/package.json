@@ -1,12 +1,12 @@
 {
   "name": "@project/app-core-util-google",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@googlemaps/js-api-loader": "^1.16.6",
-    "@project/app-core-api": "0.0.2",
-    "@project/app-core-util-config": "0.0.2",
+    "@project/app-core-api": "0.0.3",
+    "@project/app-core-util-config": "0.0.3",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false

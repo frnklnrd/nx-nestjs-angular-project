@@ -37,6 +37,9 @@
       "@project/api-core-util-crypto": [
         "libs/api/core/util/crypto/src/index.ts"
       ],
+      "@project/api-core-util-mailer": [
+        "libs/api/core/util/mailer/src/index.ts"
+      ],
       "@project/api-module-accounts-api": [
         "libs/api/module/accounts/api/src/index.ts"
       ],

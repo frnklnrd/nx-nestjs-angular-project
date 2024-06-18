@@ -26,27 +26,26 @@
   },
   "language": {
     "ca": {
-      "name": ""
+      "name": "Catalan"
     },
     "en": {
-      "name": ""
+      "name": "English"
     },
     "es": {
-      "name": ""
+      "name": "Spanish"
     }
   },
   "layout": {
     "confirm": {
       "btn": {
-        "no": "",
-        "yes": ""
+        "no": "No",
+        "yes": "Yes"
       }
     },
     "message": {
       "confirmation": {
         "errorDetail": "Fill in required fields",
         "errorHeader": "Error",
-        "paymentEdited": "",
         "successAddDetail": "Created",
         "successHeader": "Success",
         "successUpdateDetail": "Updated"
@@ -59,6 +58,12 @@
   "login": {
     "confirmation": {
       "successDetail": "Login Successfully!!!"
+    }
+  },
+  "reset-password": {
+    "confirmation": {
+      "confirmSuccessDetail": "Password Updated Successfully.",
+      "requestSuccessDetail": "Check your email for Password Recovery instructions."
     }
   }
 }
