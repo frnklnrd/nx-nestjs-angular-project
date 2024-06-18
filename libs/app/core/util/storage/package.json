@@ -1,11 +1,11 @@
 {
   "name": "@project/app-core-util-storage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@ngxs/storage-plugin": "^3.8.2",
-    "@project/app-core-util-crypto": "0.0.2"
+    "@project/app-core-util-crypto": "0.0.3"
   },
   "sideEffects": false
 }
