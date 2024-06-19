@@ -116,7 +116,7 @@ export class AuthCoreService extends AbstractService {
       .pipe(
         map((response: any) => response.data as AuthTokensResultDto),
         map((data: AuthTokensResultDto) => {
-          this.logger.console.log('refresh token OK', data);
+          this.logger.console.debug('refresh token OK', data);
 
           const isLogged: boolean = !!data?.accessToken?.tokenValue as boolean;
 
@@ -190,7 +190,7 @@ export class AuthCoreService extends AbstractService {
     return this.authApiService.resetPasswordRequest(body).pipe(
       map((response: any) => response.data as ResetPasswordRequestResultDto),
       map((data: ResetPasswordRequestResultDto) => {
-        this.logger.console.log('reset password request OK', data);
+        this.logger.console.debug('reset password request OK', data);
         this.store.dispatch(
           new AuthRefreshTokensDataAction({
             accessToken: null,
@@ -227,7 +227,7 @@ export class AuthCoreService extends AbstractService {
       .pipe(
         map((response: any) => response.data as ResetPasswordVerifyResultDto),
         switchMap((data: ResetPasswordVerifyResultDto) => {
-          this.logger.console.log('reset password verify OK', data);
+          this.logger.console.debug('reset password verify OK', data);
 
           resetPasswordConfirmToken = data.resetPasswordToken as string;
 
@@ -241,7 +241,7 @@ export class AuthCoreService extends AbstractService {
         }),
         map((response: any) => response.data as ResetPasswordConfirmResultDto),
         map((data: ResetPasswordConfirmResultDto) => {
-          this.logger.console.log('reset password confirm OK', data);
+          this.logger.console.debug('reset password confirm OK', data);
 
           this.store.dispatch(
             new AuthRefreshTokensDataAction({

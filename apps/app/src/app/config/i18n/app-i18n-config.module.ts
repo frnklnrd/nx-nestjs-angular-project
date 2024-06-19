@@ -161,7 +161,7 @@ export class AppI18nConfigModule {
       languages: APP_I18N_CONFIG.languages
     });
 
-    this.logger.console.log('Set default lang', APP_I18N_CONFIG.defaultLang);
+    this.logger.console.debug('Set default lang', APP_I18N_CONFIG.defaultLang);
 
     this.translate.setDefaultLang(APP_I18N_CONFIG.defaultLang);
 
@@ -172,7 +172,7 @@ export class AppI18nConfigModule {
     // change this according to some app or user strategy
 
     this.translate.onLangChange.subscribe((changedLang) => {
-      this.logger.console.log('Language changed!!!', changedLang.lang);
+      this.logger.console.debug('Language changed!!!', changedLang.lang);
 
       this.store.dispatch([
         new I18nChangeCurrentLangStoreAction(changedLang.lang)
@@ -190,7 +190,7 @@ export class AppI18nConfigModule {
         : APP_I18N_CONFIG.defaultLang;
     }
 
-    this.logger.console.log('Use current lang', currentLang);
+    this.logger.console.debug('Use current lang', currentLang);
 
     this.translate.use(currentLang);
 

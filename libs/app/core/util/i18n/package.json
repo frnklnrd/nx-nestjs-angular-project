@@ -1,11 +1,11 @@
 {
   "name": "@project/app-core-util-i18n",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@ngxs/store": "^3.8.2",
-    "@project/app-core-util-config": "0.0.3"
+    "@project/app-core-util-config": "0.0.4"
   },
   "sideEffects": false
 }

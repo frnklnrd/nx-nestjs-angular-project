@@ -81,11 +81,8 @@ export default () => ({
       (process.env.MAIL_PREVIEW as string) === '1' &&
       process.env.NODE_ENV === 'development',
     template: {
-      dir: join(__dirname, 'templates'),
-      adapter: 'handlerbars',
-      options: {
-        strict: true
-      }
+      layout: 'email',
+      dir: join(__dirname, 'templates')
     }
   }
 });

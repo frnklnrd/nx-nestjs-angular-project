@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { AbstractAppService } from '@project/api-core-api';
 
 @Injectable()
@@ -9,7 +10,10 @@ export class MailerUtilService extends AbstractAppService {
     return MailerUtilService.name;
   }
 
-  constructor(private mailerService: MailerService) {
+  constructor(
+    protected readonly configService: ConfigService,
+    protected readonly mailerService: MailerService
+  ) {
     super();
   }
 
@@ -24,6 +28,8 @@ export class MailerUtilService extends AbstractAppService {
   }) {
     this.logger.debug('sendEmail - init');
 
+    this.logger.debug('options', options);
+
     if (options.useTemplate) {
       await this.mailerService
         .sendMail({
@@ -31,13 +37,20 @@ export class MailerUtilService extends AbstractAppService {
           // from: '"Support Team" <support@example.com>', // override default from
           subject: options.subject,
           template: options.templateName, // `.hbs` extension is appended automatically
-          context: Object.assign({}, options.templateContext ?? {})
+          context: Object.assign(
+            {
+              layout: this.configService.get<string>(
+                'mailer.template.layout'
+              ) as string
+            },
+            options.templateContext ?? {}
+          )
         })
         .then((response) => {
-          this.logger.debug('sendEmail - response', response);
+          this.logger.debug('response', response);
         })
         .catch((error) => {
-          this.logger.debug('sendEmail - error', error);
+          this.logger.debug('error', error);
         });
     } else {
       await this.mailerService
@@ -49,10 +62,10 @@ export class MailerUtilService extends AbstractAppService {
           html: options.html as string
         })
         .then((response) => {
-          this.logger.debug('sendEmail - response', response);
+          this.logger.debug('response', response);
         })
         .catch((error) => {
-          this.logger.debug('sendEmail - error', error);
+          this.logger.debug('error', error);
         });
     }
 

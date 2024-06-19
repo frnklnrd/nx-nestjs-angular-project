@@ -377,7 +377,7 @@ export class AuthService extends AbstractAppService {
       to: user.email as string,
       subject: 'Password Reset Confirmation.',
       useTemplate: true,
-      templateName: './mail/reset-password/send-verification-code',
+      templateName: 'reset-password-send-verification-code',
       templateContext: {
         name: user.username,
         verificationCode: tokens.verificationCode,
