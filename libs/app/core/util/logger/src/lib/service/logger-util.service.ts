@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NGXLogger } from 'ngx-logger';
 import { inject, Injectable } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 
 @Injectable()
 export class LoggerUtilService {
