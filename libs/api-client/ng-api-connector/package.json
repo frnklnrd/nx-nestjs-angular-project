@@ -1,6 +1,6 @@
 {
   "name": "@project/api-client-ng-api-connector",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^17.3.11",
     "@angular/core": "^17.3.11"

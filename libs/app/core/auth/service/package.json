@@ -1,12 +1,12 @@
 {
   "name": "@project/app-core-auth-service",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
-    "@project/api-client-ng-api-connector": "0.0.3",
-    "@project/app-core-api": "0.0.3",
-    "@project/app-core-auth-store": "0.0.3",
+    "@project/api-client-ng-api-connector": "0.0.4",
+    "@project/app-core-api": "0.0.4",
+    "@project/app-core-auth-store": "0.0.4",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false
