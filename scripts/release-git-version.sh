@@ -11,14 +11,14 @@ else
     exit 1
 fi
 
-# load .release vars
+# load .env.release vars
 
-if [ -f .release ]; then
+if [ -f .env.release ]; then
     set -a
-    [ -f .release ] && . .release
+    [ -f .env.release ] && . .env.release
     set +a
 else
-    echo "File .release not exists."
+    echo "File .env.release not exists."
     exit 1
 fi
 

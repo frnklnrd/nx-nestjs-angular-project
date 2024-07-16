@@ -44,4 +44,4 @@ Thumbs.db
 .angular
 .env
 .env.local
-.release
+.env.release
