@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable, filter, switchMap } from 'rxjs';
+import { Observable, filter, switchMap, take } from 'rxjs';
 
 @Injectable()
 export class HttpRequestAppendHeadersToApiCallInterceptor
@@ -48,6 +48,7 @@ export class HttpRequestAppendHeadersToApiCallInterceptor
       .select((state) => state?.auth?.checkingAuthTokenValid)
       .pipe(
         filter((checking) => !checking),
+        take(1),
         switchMap(() => {
           request = this.appendHeaders(request, find);
           return next.handle(request);
