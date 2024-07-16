@@ -44,6 +44,7 @@ sed -i 's/encodeValue(v: string)/override encodeValue(v: string)/g' ./libs/api-c
 #-exec sed -i "s/Service/ApiService/g" {} \;
 
 find ./libs/api-client/ng-api-connector/src/lib/generated -type f -name '*.ts' | while read -r file; do
+    echo "$file"
     sed -i "s/Service/ApiService/g" "$file"
     sed -i '1i /* eslint-disable @typescript-eslint/no-empty-interface */' "$file"
     sed -i '1i /* eslint-disable @typescript-eslint/no-explicit-any */' "$file"
